@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2b9c761f-59b6-4762-b48f-80d769d321f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/io/codeforall/bootcamp/exercise/Ai.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/io/codeforall/bootcamp/exercise/Ai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/io/codeforall/bootcamp/tests/AiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/io/codeforall/bootcamp/tests/AiTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Jmorgado18&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Jmorgado18/my-exercises.git&quot;,
+    &quot;accountId&quot;: &quot;76ce55b0-64b1-4411-8f24-726921f8c71b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2miSTPTQ3UWesjLRwnFKGV5xMIe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jpmor/Documents/Programacao/Formacao/CodeForAll/a/skeletons/java-vs-tests-skeleton"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b9c761f-59b6-4762-b48f-80d769d321f8" name="Changes" comment="" />
+      <created>1727557911086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727557911086</updated>
+    </task>
+    <servers />
+  </component>
+</project>

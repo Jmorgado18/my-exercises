@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="be717f11-90ca-4dea-91db-9930ed91f158" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/NumberGenarator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/NumberGenarator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/Playground.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04/FindingNumber/FindingNumber/src/io/codeforall/bootcamp/Playground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/src/PlayGround.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/src/PlayGround.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/src/Player.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Jmorgado18"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Jmorgado18/my-exercises.git",
+    "accountId": "76ce55b0-64b1-4411-8f24-726921f8c71b"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2mkkpCRNBgLWahCLUw5le2C6SV6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.PlayGround.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jpmor/Documents/Programacao/Formacao/CodeForAll/Season01/05/java-vs-tests-skeleton/src"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be717f11-90ca-4dea-91db-9930ed91f158" name="Changes" comment="" />
+      <created>1727628142030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727628142030</updated>
+    </task>
+    <servers />
+  </component>
+</project>

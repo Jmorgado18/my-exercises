@@ -18,11 +18,11 @@ public class Ai {
     public void setName(String name){
         this.name=name;
     }
-    //Getter
+    //Getter CreationDate
     public String getCreationDate(){
         return this.creationDate;
     }
-    //Setter
+    //Setter CreationDate
     public void setCreationDate(String creationDate){
         this.creationDate=creationDate;
     }
@@ -37,6 +37,7 @@ public class Ai {
     }
 
     //Factorial Recursivo
+
     public int factorialRecursive(int number){
         if (number==0 || number ==1){
             return 1;
@@ -72,7 +73,7 @@ public class Ai {
         }
 
     }
-
+        //email
     public String emailValidator(){
     return "^(.+)@(.+)$";
 

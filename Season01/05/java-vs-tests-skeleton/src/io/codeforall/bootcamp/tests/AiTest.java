@@ -15,7 +15,7 @@ import java.util.regex.PatternSyntaxException;
 
 public class AiTest {
 
-    public static vo id main(String[] args) {
+    public static void main(String[] args) {
 
         assertCondition("Properties", createProperties());
         assertCondition("Constructor", createConstructor());

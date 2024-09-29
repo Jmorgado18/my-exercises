@@ -4,86 +4,84 @@ public class Ai {
     private String name;
     private String creationDate;
 
-    // Construtor
-    public Ai(String name, String creationDate) {
-        this.name = name;
-        this.creationDate = creationDate;
-    }
 
-    // Getter para o nome
-    public String getName() {
-        return name;
+        //Construtor recebe name e creationDate
+    public Ai(String name, String creationDate){
+        this.creationDate=creationDate;
+        this.name=name;
     }
-
-    // Setter para o nome
-    public void setName(String name) {
-        this.name = name;
+    //Getter para o nome
+    public String getName(){
+        return this.name;
     }
-
-    // Getter para a data de criação
-    public String getCreationDate() {
-        return creationDate;
+    //Setter para o nome
+    public void setName(String name){
+        this.name=name;
     }
-
-    // Setter para a data de criação
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
+    //Getter
+    public String getCreationDate(){
+        return this.creationDate;
     }
+    //Setter
+    public void setCreationDate(String creationDate){
+        this.creationDate=creationDate;
+    }
+    //Duplicar array
+    public int[] doubleArray(int[] array){
+        int[] newArray = new int[array.length];
 
-    // Método para duplicar os valores de um array de inteiros
-    public int[] doubleArray(int[] arr) {
-        int[] doubledArray = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            doubledArray[i] = arr[i] * 2;
+        for(int i=0 ; i<array.length ; i++){
+            newArray[i] = array[i]*2;
         }
-        return doubledArray;
+        return newArray;
     }
 
-    // Método para substituir palíndromos numa string por "palindrome"
-    public String palindromeReplace(String input) {
-        String[] words = input.split(" ");
-        StringBuilder result = new StringBuilder();
-
-        for (String word : words) {
-            if (isPalindrome(word)) {
-                result.append("palindrome ");
-            } else {
-                result.append(word).append(" ");
-            }
+    //Factorial Recursivo
+    public int factorialRecursive(int number){
+        if (number==0 || number ==1){
+            return 1;
         }
-        return result.toString().trim();
+        return number * factorialRecursive((number -1));
     }
 
-    // Método auxiliar para verificar se uma palavra é um palíndromo
-    private boolean isPalindrome(String word) {
-        String cleanWord = word.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
-        String reversedWord = new StringBuilder(cleanWord).reverse().toString();
-        return cleanWord.equals(reversedWord);
-    }
-
-    // Método para calcular o fatorial de forma iterativa
-    public int factorialIterative(int n) {
+    //Factorial Iterativo
+    public int factorialIterative(int number) {
         int result = 1;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 2; i <= number; i++) {
             result *= i;
         }
         return result;
+
     }
 
-    // Método para calcular o fatorial de forma recursiva
-    public int factorialRecursive(int n) {
-        if (n == 0 || n == 1) {
-            return 1;
+    // Palindrome
+    public String palindromeReplace(String inputword) {
+
+        boolean isPalindrome = true;
+        for (int i = 0; i < inputword.length() / 2; i++) {
+
+            if (inputword.charAt(i) != inputword.charAt(inputword.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
         }
-        return n * factorialRecursive(n - 1);
+        if (isPalindrome) {
+            return "palindrome";
+        } else {
+            return inputword;
+        }
+
+    }
+
+    public String emailValidator(){
+    return "^(.+)@(.+)$";
+
     }
 
 
-    // Método para retornar uma expressão regular para validar emails
-    public String emailValidator() {
-        // Expressão regular mais rigorosa para validar emails
-        return "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    }
+
+
+
 
 
 }

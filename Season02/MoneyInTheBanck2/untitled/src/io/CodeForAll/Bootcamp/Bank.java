@@ -3,13 +3,13 @@ package io.CodeForAll.bootcamp;
 import io.CodeForAll.Bootcamp.Client;
 
 public class Bank {
-    private Client client;
-    private double money;
-
-    // Construtor do banco
-    public Bank(Client client) {
-        this.client = client;
-        this.money = 0.0;  // Saldo inicial é zero
+private Client client;
+private double money;
+// Construtor do banco
+public Bank(Client client) {
+this.client = client;
+this.money = 0.0; // Saldo
+inicial é zero
     }
 
     // Método para depositar dinheiro

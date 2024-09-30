@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a395181c-5ed8-449d-8552-b0a1d0768a93" name="Changes" comment="" />
+    <list default="true" id="a395181c-5ed8-449d-8552-b0a1d0768a93" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Bank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Playground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Move.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/PlayGround.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/PlayGround.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest$TestResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest$TestResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../a/skeletons/java-vs-tests-skeleton/java-vs-tests-skeleton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../a/skeletons/java-vs-tests-skeleton/java-vs-tests-skeleton.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,22 +32,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Jmorgado18"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Jmorgado18&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Jmorgado18/my-exercises.git",
-    "accountId": "76ce55b0-64b1-4411-8f24-726921f8c71b"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Jmorgado18/my-exercises.git&quot;,
+    &quot;accountId&quot;: &quot;76ce55b0-64b1-4411-8f24-726921f8c71b&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2mkZrtMW81TQputmcu3g5l9dwCA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,9 +56,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AiTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/codecadet/Documents/my-exercises/Season01/05/java-vs-tests-skeleton",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -47,7 +77,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727622738336</updated>
+      <workItem from="1727701572481" duration="2676000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

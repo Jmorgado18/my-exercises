@@ -1,6 +1,6 @@
 public class Player {
 
-public Move Getmoves() {
+public Move getmoves() {
 
     return Move.getMoves();
 }

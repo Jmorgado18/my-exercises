@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fbe21683-30ad-4390-8393-98d64e97f68d" name="Changes" comment="" />
+    <list default="true" id="fbe21683-30ad-4390-8393-98d64e97f68d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Bank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Playground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Move.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/PlayGround.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/PlayGround.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/RockPaperScissors v2/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest$TestResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest$TestResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../java-vs-tests-skeleton/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../a/skeletons/java-vs-tests-skeleton/java-vs-tests-skeleton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../a/skeletons/java-vs-tests-skeleton/java-vs-tests-skeleton.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +36,12 @@
       </list>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2miRMAgrH5KSctSJjcJvMsIyE43" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,12 +50,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.PlayGround.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jpmor/Documents/Programacao/Formacao/CodeForAll/Season01/05/RockPaperScissors/src",
+    "last_opened_file_path": "/Users/codecadet/Documents/my-exercises/Season01/05/RockPaperScissors v2/untitled",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -44,7 +73,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727557361677</updated>
+      <workItem from="1727701552476" duration="3461000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

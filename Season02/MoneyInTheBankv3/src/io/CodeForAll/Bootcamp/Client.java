@@ -12,12 +12,12 @@ public class Client {
 
     }
     //Methos that invoke other methods
-    public void depositClient(double quantia) {
-        bank.deposit(quantia);
+    public void depositClient(double howMuch) {
+        bank.deposit(howMuch);
     }
 
-    public void withdrawClient(double quantia) {
-        bank.withdraw(quantia);
+    public void withdrawClient(double howMuch) {
+        bank.withdraw(howMuch);
     }
 
     public double getBalanceClient() {

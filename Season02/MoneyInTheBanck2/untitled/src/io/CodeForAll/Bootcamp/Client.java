@@ -9,22 +9,17 @@ public class Client {
     public Client(String nome) {
         this.nome = nome;
         this.bank = new Bank(this);
-
-
     }
 
     public void depositar(double quantia) {
-        bank.Add(quantia);
+        bank.add(quantia);
     }
-
     public void levantar(double quantia) {
-        bank.Sub(quantia);
+        bank.sub(quantia);
     }
-
     public double consultarSaldo() {
         return bank.getSaldo();
     }
-
     public String getNome() {
         return nome;
 

@@ -8,16 +8,19 @@ public class Playground {
 
 
         Client pessoa = new Client("João");
-        Bank bank = new Bank(pessoa);
-        bank.Add(100);
-        bank.Sub(50);
-        System.out.println("Saldo atual: " + bank.getSaldo() + " euros");
+
+        pessoa.depositar(100);
+        pessoa.levantar(50);
+        System.out.println("Saldo Atual." + pessoa.consultarSaldo() + "euros");
+
+
+        System.out.println("-------------------------");
 
         Client pessoa2 = new Client("David");
-        Bank bank2 = new Bank(pessoa2);
-        bank2.Add(20);
-        bank2.Sub(12.5);
-        System.out.println("Saldo atual: " + bank2.getSaldo() + " euros");
+        pessoa2.depositar(30);
+        pessoa2.levantar(50);
+        System.out.println("Saldo Atual." + pessoa2.consultarSaldo() + "euros");
+
     }
 }
 

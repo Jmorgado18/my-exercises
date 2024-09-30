@@ -20,6 +20,7 @@ public class Bank {
         } else {
             System.out.println("Quantia inválida para depósito.");
         }
+
     }
 
     // Método para levantar dinheiro
@@ -34,6 +35,7 @@ public class Bank {
 
     // Método para consultar o saldo
     public double getSaldo() {
+        System.out.println("Saldo atual: " + money + " euros");
         return money;
     }
 }

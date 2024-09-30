@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a395181c-5ed8-449d-8552-b0a1d0768a93" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Bank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Playground.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/PlayGround.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/PlayGround.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/out/production/RockPaperScissors v2/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RockPaperScissors v2/untitled/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/exercise/Ai.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest$TestResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest$TestResult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/java-vs-tests-skeleton/io/codeforall/bootcamp/tests/AiTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../a/skeletons/java-vs-tests-skeleton/java-vs-tests-skeleton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../a/skeletons/java-vs-tests-skeleton/java-vs-tests-skeleton.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Playground.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Season02/MoneyInTheBanck2/untitled/src/io/CodeForAll/Bootcamp/Playground.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

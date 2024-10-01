@@ -10,7 +10,7 @@ public class PlayGround {
         person1.withdrawClient(50);
         person1.getBalanceClient();
 
-        System.out.println("-------------------------");
+        System.out.println("-----------------------------");
 
         Client person2 = new Client("Ada");
         person2.getBalanceClient();

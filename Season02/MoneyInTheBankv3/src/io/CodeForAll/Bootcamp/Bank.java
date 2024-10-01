@@ -15,18 +15,17 @@ public class Bank {
     public void deposit(double howMuch) {
         if (howMuch > 0) {
             money += howMuch;
-            System.out.println(client.getNome() + " deposited " + howMuch + " euros.");
-        } else {
-            System.out.println("Invalid quantity for deposit.");
+            System.out.println(client.getName() + " deposited " + howMuch + " euros.");
+            return;
         }
-
+        System.out.println("Invalid quantity for deposit.");
     }
 
     // Method to withdraw
     public void withdraw(double howMuch) {
         if (howMuch > 0 && howMuch <= money) {
             money -= howMuch;
-            System.out.println(client.getNome() + " withdrew  " + howMuch + " euros.");
+            System.out.println(client.getName() + " withdrew  " + howMuch + " euros.");
         } else {
             System.out.println("Invalid amount or insufficient balance.");
         }

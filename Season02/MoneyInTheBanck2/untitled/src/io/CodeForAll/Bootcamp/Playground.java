@@ -12,9 +12,8 @@ public class Playground {
 
         //Duas pessoas a partilhar o mesmo banco
 
-
         Client pessoa = new Client("João");
-        //pessoa.newClient();
+
         pessoa.consultarSaldo();
         pessoa.depositar(100);
         pessoa.levantar(50);

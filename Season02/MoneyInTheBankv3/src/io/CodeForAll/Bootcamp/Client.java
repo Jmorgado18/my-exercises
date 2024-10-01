@@ -11,7 +11,7 @@ public class Client {
 
 
     }
-    //Methos that invoke other methods
+    //Method that invoke other methods
     public void depositClient(double howMuch) {
         bank.deposit(howMuch);
     }
@@ -24,7 +24,7 @@ public class Client {
         return bank.getBalance();
     }
 
-    public String getNome() {
+    public String getName() {
         return name;
 
     }

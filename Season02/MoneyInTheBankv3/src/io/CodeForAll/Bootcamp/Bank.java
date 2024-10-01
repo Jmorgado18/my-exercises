@@ -2,7 +2,7 @@ package io.CodeForAll.Bootcamp;
 
 public class Bank {
 
-    private Client client;
+     private Client client;
     private double money;
 
     //Constructer

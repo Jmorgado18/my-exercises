@@ -2,8 +2,6 @@ package io.CodeForAll.fanstatics;
 
 public class Lamp {
     private int rubs;
-    private String WhichGenie;
-    private Genie genie;
 
     private int countRubs;
 
@@ -15,8 +13,8 @@ public class Lamp {
         countRubs++;
         if (countRubs <= rubs) {
 
-            System.out.println(rubs);
-            System.out.println(countRubs);
+            //System.out.println(rubs);
+           // System.out.println(countRubs);
             if (countRubs % 2 == 0) {
                 FriendlyGenie friendlyGenie1 = new FriendlyGenie(3);
                 friendlyGenie1.doWish();

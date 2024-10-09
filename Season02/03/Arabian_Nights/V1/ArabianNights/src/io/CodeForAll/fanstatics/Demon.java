@@ -1,37 +1,38 @@
 package io.CodeForAll.fanstatics;
 
 public class Demon extends Genie {
-    private int nrOfWishes;
-    private int kk = 1;
+
+
     boolean firstTime = true;
 
+    String demonEmoji = "\uD83D\uDE08";
     public Demon(int nrOfWishes) {
-        super();
-        this.nrOfWishes = nrOfWishes;
-    }
+        super(nrOfWishes);
 
+    }
+    @Override
     public void doWish() {
 
-        System.out.println(firstTime);
-        if (firstTime = true) {
+
+        if (firstTime == true) {
 
             for (int i = 0; i < nrOfWishes; i++) {
-                System.out.println("Your Wish has been granted by Demon Genie " + i);
+                System.out.println("Your Wish has been granted by DEMON  " + demonEmoji);
                 firstTime = false; }
 
 
-        } else if (firstTime=false){
+        } else {
             
-            System.out.println("Your Wish has been granted by Demon Genie");
-            firstTime = false;
+            System.out.println("Your Wish has been granted by Demon Genie"+ demonEmoji);
+
         }
         int recharge = ((int) (Math.random() * 11));
-        System.out.println(recharge);
+
         if (recharge > 7) {
             System.out.println("Your Lamp has been Recharged");
             System.out.println("==========================");
-             return;
         } else {
+            System.out.println("You failed to recharge");
                firstTime=false ; 
             doWish();
 

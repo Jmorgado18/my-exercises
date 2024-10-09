@@ -1,12 +1,14 @@
 package io.CodeForAll.fanstatics;
 
 public class Genie {
-    private int nrOfWishes;
+    protected int nrOfWishes;
 
 
-    public Genie(){
+    public Genie(int nrOfWishes){
         this.nrOfWishes=nrOfWishes;
     }
-
+    public void doWish() {
+        System.out.println("A wish is being granted." );
+    }
 }
 

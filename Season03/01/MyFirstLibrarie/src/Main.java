@@ -8,6 +8,6 @@ public class Main {
         rectangle.setColor(Color.LIGHT_GRAY);
         rectangle.fill();
         rectangle.grow(100,100);
-
+        
     }
 }

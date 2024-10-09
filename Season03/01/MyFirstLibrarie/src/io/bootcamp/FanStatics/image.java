@@ -7,4 +7,5 @@ public class image extends Rectangle {
 
     Picture picture=new Picture(199,199,"fcp.png");
 
+
 }

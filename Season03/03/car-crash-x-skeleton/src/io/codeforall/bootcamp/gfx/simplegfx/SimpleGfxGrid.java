@@ -4,20 +4,30 @@ import io.codeforall.bootcamp.grid.Grid;
 import io.codeforall.bootcamp.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Shape;
 
 public class SimpleGfxGrid implements Grid {
 
     // private static Rectangle rectangle;
 
-    private int cols;
-    private int rows;
+    private int col;
+    private int row;
+    private int pixelCols;
+private int pixelRows;
+private int width;
+private int height;
+private Shape rectangle;
     public static final int PADDING = 10;
 
 
     public SimpleGfxGrid(int cols, int rows) {
 
-        this.cols = cols;
-        this.rows = rows;
+        this.col = cols;
+        this.row = rows;
+        this.pixelCols=PADDING;
+        this.pixelRows=PADDING;
+    this.width=col * getCellSize();
+this.height=this.row *getCellSize();
 
         //throw new UnsupportedOperationException();
 
@@ -28,7 +38,7 @@ public class SimpleGfxGrid implements Grid {
      */
     @Override
     public void init() {
-        Rectangle rectangle = new Rectangle(PADDING, PADDING, this.cols*this.getCellSize(), this.rows*this.getCellSize());
+        rectangle = new Rectangle(PADDING, PADDING, this.getWidth(), this.getHeight());
         rectangle.draw();
 
         //throw new UnsupportedOperationException();
@@ -39,7 +49,7 @@ public class SimpleGfxGrid implements Grid {
      */
     @Override
     public int getCols() {
-        return this.cols;
+        return col;
         //throw new UnsupportedOperationException();
     }
 
@@ -48,7 +58,7 @@ public class SimpleGfxGrid implements Grid {
      */
     @Override
     public int getRows() {
-        return this.rows;
+        return row;
         //throw new UnsupportedOperationException();
     }
 
@@ -58,7 +68,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the width of the grid
      */
     public int getWidth() {
-        return this.cols * getCellSize();
+        return width;
 
         //throw new UnsupportedOperationException();
     }
@@ -69,7 +79,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the height of the grid
      */
     public int getHeight() {
-        return this.rows * getCellSize();
+        return height;
         //throw new UnsupportedOperationException();
     }
 
@@ -79,7 +89,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the x position of the grid
      */
     public int getX() {
-        return PADDING;
+        return this.pixelCols;
         //throw new UnsupportedOperationException();
     }
 
@@ -89,7 +99,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the y position of the grid
      */
     public int getY() {
-        return PADDING;
+        return this.pixelRows;
         //throw new UnsupportedOperationException();
     }
 
@@ -99,7 +109,7 @@ public class SimpleGfxGrid implements Grid {
      * @return
      */
     public int getCellSize() {
-        return 20;
+        return pixelCols +pixelRows;
         //throw new UnsupportedOperationException();
     }
 
@@ -127,7 +137,7 @@ public class SimpleGfxGrid implements Grid {
      * @return y pixel value
      */
     public int rowToY(int row) {
-        return rows * getCellSize() + PADDING;
+        return row * getCellSize() + PADDING;
         // throw new UnsupportedOperationException();
     }
 
@@ -138,7 +148,7 @@ public class SimpleGfxGrid implements Grid {
      * @return x pixel value
      */
     public int columnToX(int column) {
-        return cols * getCellSize() + PADDING;
+        return col * getCellSize() + PADDING;
 
 
        // throw new UnsupportedOperationException();

@@ -4,6 +4,7 @@ public class LinkedListTest {
     public static void main(String[] args) {
 
         LinkedListTest test = new LinkedListTest();
+
         test.assertCondition("Add data to the list", test.testAdd());
         test.assertCondition("Index data from the list", test.testIndex());
         test.assertCondition("Get data from the list", test.testGet());

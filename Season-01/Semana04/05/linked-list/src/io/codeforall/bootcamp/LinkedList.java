@@ -3,10 +3,18 @@ package io.codeforall.bootcamp;
 /**
  * A simple Linked List container implementation
  */
-public class LinkedList {
-
+public class LinkedList<T> {
+    private T t;
     private Node head;
     private int length = 0;
+
+    public void set (T t){
+        this.t=t;
+
+    }
+    public T get () {
+        return t;
+    }
 
     public LinkedList() {
 
@@ -28,7 +36,7 @@ public class LinkedList {
      *
      * @param data the element to add
      */
-    public void add(Object data) {
+    public void add(T data) {
 
         Node node = new Node(data);
         Node iterator = head;
@@ -49,7 +57,7 @@ public class LinkedList {
      * @param data the element to search for
      * @return the index of the element, or -1 if the list does not contain the element
      */
-    public int indexOf(Object data) {
+    public int indexOf(T data) {
 
         int index = 0;
         Node iterator = head.getNext();
@@ -98,7 +106,7 @@ public class LinkedList {
      * @param data the element to remove
      * @return true if the list contains the element
      */
-    public boolean remove(Object data) {
+    public boolean remove(T data) {
 
         Node previous = head;
         Node iterator = head.getNext();
@@ -133,9 +141,9 @@ public class LinkedList {
         /**
          * Reference to the data
          */
-        private Object data;
+        private T data;
 
-        public Node(Object data) {
+        public Node(T data) {
             this.data = data;
             next = null;
         }
@@ -144,7 +152,7 @@ public class LinkedList {
             return data;
         }
 
-        public void setData(Object data) {
+        public void setData(T data) {
             this.data = data;
         }
 

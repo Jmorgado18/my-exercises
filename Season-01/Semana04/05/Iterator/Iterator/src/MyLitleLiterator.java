@@ -14,7 +14,6 @@ public class MyLitleLiterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        ;
 
         return count < end;
     }

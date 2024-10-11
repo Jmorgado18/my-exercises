@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class Range implements Iterable<Integer>{
+public class Range implements Iterable<Integer> {
     private int start;
     private int end;
 
@@ -13,7 +13,7 @@ public class Range implements Iterable<Integer>{
 
     @Override
     public Iterator<Integer> iterator() {
-        return new MyLitleLiterator(start,end);
+        return new MyLitleLiterator(this.start, this.end);
     }
 
 

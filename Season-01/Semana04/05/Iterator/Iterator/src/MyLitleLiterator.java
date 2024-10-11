@@ -2,21 +2,28 @@ import java.util.Iterator;
 
 public class MyLitleLiterator implements Iterator<Integer> {
 
-    private int current;
+
     private int end;
+    private int count;
 
     public MyLitleLiterator(int start, int end) {
-        this.current= start;
+
         this.end = end;
+        this.count = start;
     }
-   @Override
+
+    @Override
     public boolean hasNext() {
-        return false;
+        ;
+
+        return count < end;
     }
 
     @Override
     public Integer next() {
-        return null;
+
+        count++;
+        return count;
     }
 
 

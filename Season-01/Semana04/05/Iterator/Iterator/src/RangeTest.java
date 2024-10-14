@@ -7,11 +7,11 @@ public class RangeTest {
         Iterator<Integer> it = r.iterator();
 
 
-        while (it.hasNext()){
-        int i = it.next();
-        if (i == 1 || i == 2 || i == 3) {
-        it.remove();
-        }
+        while (it.hasNext()) {
+            int i = it.next();
+            if (i == 1 || i == 2 || i == 3) {
+                it.remove();
+            }
         }
 
         for (Integer i : r) {

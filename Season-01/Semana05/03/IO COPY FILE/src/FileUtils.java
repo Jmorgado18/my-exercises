@@ -15,7 +15,8 @@ public class FileUtils {
             while ((byteReader = inputStream.read(buffer)) !=-1){
                  outputStream.write(buffer,0,byteReader);
             }
-
+            inputStream.close();
+            outputStream.close();
         }
 
     }

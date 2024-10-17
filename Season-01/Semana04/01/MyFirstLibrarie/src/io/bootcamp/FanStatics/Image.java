@@ -25,18 +25,17 @@ public class Image implements KeyboardHandler {
 
         keyboard.addEventListener(moveRight);
 
-        @Override
-        public void keyPressed(KeyboardEvent keyboardEvent){
-            switch (KeyboardEvent.getKey()) {
-                case KeyboardEvent.KEY_RIGHT:
-                    picture.translate(100, 0);
-                    break;
-            }
-        }
 
-        @Override
-        public void keyReleased (KeyboardEvent keyboardEvent){
+        
+    }
 
-        }
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
     }
 }

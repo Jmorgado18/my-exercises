@@ -1,28 +1,29 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class WordReader implements Iterable<String> {
     private final String filePath;
-    private String[] result;
+    private String[] words;
 
     public WordReader(String filePath) {
         this.filePath = filePath;
-        this.result = new String[100];
+       // this.words = new String[0];
     }
 
     private void readFileByLine() throws IOException {
         BufferedReader bReader = new BufferedReader(new FileReader(filePath));
         StringBuilder resultBuilder = new StringBuilder();
 
-        String line;
+        String line="";
+        String result ="";
         while ((line = bReader.readLine()) != null) {
             resultBuilder.append(line).append("\n");
+           // result += line +"\n";
         }
 
         bReader.close();
-        this.result = resultBuilder.toString().split("\\s+");
+        this.words = result.split(" ");
     }
 
     @Override
@@ -33,7 +34,7 @@ public class WordReader implements Iterable<String> {
             throw new RuntimeException("Erro ao ler o arquivo: " + e.getMessage(), e);
         }
         
-        return Arrays.stream(result).iterator();
+        return Arrays.stream(words).iterator();
     }
 
 }

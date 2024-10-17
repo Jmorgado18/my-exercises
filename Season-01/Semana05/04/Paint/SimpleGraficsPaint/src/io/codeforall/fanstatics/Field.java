@@ -60,7 +60,7 @@ public class Field implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_RIGHT:
-                System.out.println(isSwitching);
+               // System.out.println(isSwitching);
 
                 if (this.cursor.getX() < PADDING + ((this.cols - 1) * cellsize)) {
                     cursor.translate(cellsize, 0);
@@ -73,7 +73,7 @@ public class Field implements KeyboardHandler {
 
                 break;
             case KeyboardEvent.KEY_LEFT:
-                System.out.println(isSwitching);
+               // System.out.println(isSwitching);
                 if (this.cursor.getX() > PADDING) {
                     cursor.translate(-cellsize, 0);
                 }
@@ -86,7 +86,7 @@ public class Field implements KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
-                System.out.println(isSwitching);
+               // System.out.println(isSwitching);
                 if (this.cursor.getY() < PADDING + ((this.rows - 1) * cellsize)) {
                     cursor.translate(0, cellsize);
                 }
@@ -101,7 +101,7 @@ public class Field implements KeyboardHandler {
 
                 break;
             case KeyboardEvent.KEY_UP:
-                System.out.println(isSwitching);
+              //  System.out.println(isSwitching);
                 if (this.cursor.getY() > PADDING) {
                     cursor.translate(0, -cellsize);
                 }
@@ -115,7 +115,7 @@ public class Field implements KeyboardHandler {
                 break;
 
             case KeyboardEvent.KEY_SPACE:
-                System.out.println(isSwitching);
+               // System.out.println(isSwitching);
 
                 if (paintedPositions[(int) (this.cursor.getX() / cellsize) - 1][(int) (this.cursor.getY() / cellsize) - 1]) {
                     unpaintCell();

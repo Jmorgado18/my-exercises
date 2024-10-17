@@ -9,7 +9,7 @@ public class WordReader implements Iterable<String> {
 
     public WordReader(String filePath) {
         this.filePath = filePath;
-        this.result = new String[0];  // Inicializa a variável para evitar null pointer exception
+        this.result = new String[100];
     }
 
     private void readFileByLine() throws IOException {
@@ -18,21 +18,22 @@ public class WordReader implements Iterable<String> {
 
         String line;
         while ((line = bReader.readLine()) != null) {
-            resultBuilder.append(line).append("\n");  // Concatena as linhas com StringBuilder.
+            resultBuilder.append(line).append("\n");
         }
 
         bReader.close();
-        this.result = resultBuilder.toString().split("\\s+");  // Corrigido: separa por qualquer espaço em branco.
+        this.result = resultBuilder.toString().split("\\s+");
     }
 
     @Override
     public Iterator<String> iterator() {
         try {
-            readFileByLine();  // Lê o arquivo no momento da iteração
+            readFileByLine();
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao ler o arquivo: " + e.getMessage(), e);  // Lança exceção se houver erro
+            throw new RuntimeException("Erro ao ler o arquivo: " + e.getMessage(), e);
         }
         
         return Arrays.stream(result).iterator();
     }
+
 }

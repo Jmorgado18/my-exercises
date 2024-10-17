@@ -1,38 +1,37 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
 
 public class WordReader implements Iterable<String> {
-    private final String filePath;
-    private String[] result;
+    FileReader fileReader;
+    BufferedReader bReader;
+    String[] words;
 
-    public WordReader(String filePath) {
-        this.filePath = filePath;
-        this.result = new String[0];  // Inicializa a variável para evitar null pointer exception
-    }
 
-    private void readFileByLine() throws IOException {
-        BufferedReader bReader = new BufferedReader(new FileReader(filePath));
-        StringBuilder resultBuilder = new StringBuilder();
-
-        String line;
-        while ((line = bReader.readLine()) != null) {
-            resultBuilder.append(line).append("\n");  // Concatena as linhas com StringBuilder.
+    public WordReader(String filePath) throws IOException, FileNotFoundException {
+        try {
+            this.fileReader = new FileReader(filePath);
+            this.bReader = new BufferedReader(this.fileReader);
+        } catch (FileNotFoundException ex){
+            System.out.println("File not found!");
         }
 
-        bReader.close();
-        this.result = resultBuilder.toString().split("\\s+");  // Corrigido: separa por qualquer espaço em branco.
+        String line = "";
+        String result = "";
+
+        while((line = bReader.readLine()) != null){
+            line = line.replaceAll("[^a-zA-Z ]", "");
+            result += line;
+        }
+
+        this.bReader.close();
+
+        this.words = result.split(" ");
     }
 
     @Override
     public Iterator<String> iterator() {
-        try {
-            readFileByLine();  // Lê o arquivo no momento da iteração
-        } catch (IOException e) {
-            throw new RuntimeException("Erro ao ler o arquivo: " + e.getMessage(), e);  // Lança exceção se houver erro
-        }
-        
-        return Arrays.stream(result).iterator();
+        return Arrays.stream(this.words).iterator();
     }
 }

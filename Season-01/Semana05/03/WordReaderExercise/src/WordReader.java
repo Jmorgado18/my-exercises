@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
+<<<<<<< HEAD
 
 public class WordReader implements Iterable<String> {
     private final String filePath;
@@ -23,11 +24,40 @@ public class WordReader implements Iterable<String> {
         }
 
         bReader.close();
+=======
+import java.util.ArrayList;
+
+public class WordReader implements Iterable<String> {
+    FileReader fileReader;
+    BufferedReader bReader;
+    String[] words;
+
+
+    public WordReader(String filePath) throws IOException, FileNotFoundException {
+        try {
+            this.fileReader = new FileReader(filePath);
+            this.bReader = new BufferedReader(this.fileReader);
+        } catch (FileNotFoundException ex){
+            System.out.println("File not found!");
+        }
+
+        String line = "";
+        String result = "";
+
+        while((line = bReader.readLine()) != null){
+            line = line.replaceAll("[^a-zA-Z ]", "");
+            result += line;
+        }
+
+        this.bReader.close();
+
+>>>>>>> f6d174a7dd516a00afac48ff6ecfd67c79eced17
         this.words = result.split(" ");
     }
 
     @Override
     public Iterator<String> iterator() {
+<<<<<<< HEAD
         try {
             readFileByLine();
         } catch (IOException e) {
@@ -38,3 +68,8 @@ public class WordReader implements Iterable<String> {
     }
 
 }
+=======
+        return Arrays.stream(this.words).iterator();
+    }
+}
+>>>>>>> f6d174a7dd516a00afac48ff6ecfd67c79eced17

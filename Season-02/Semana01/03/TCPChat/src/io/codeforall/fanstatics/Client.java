@@ -28,8 +28,9 @@ public class Client {
             // Lê a resposta do servidor
             String serverMessage = in.readLine();
 
-            // Verifica se a mensagem do servidor é nula (conexão fechada) e imprime a mensagem correspondente
+            // Verifica se a mensagem do servidor é nula (se sim : conexão fechada) se nao, imprime a mensagem correspondente
             System.out.println(serverMessage == null ? "CONNECTION CLOSED" : serverMessage);
+
         }
     }
 }

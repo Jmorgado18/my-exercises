@@ -15,21 +15,19 @@ public class Main {
 
         DatagramSocket socket = new DatagramSocket(localPort);
         // Cria um socket de datagrama (UDP) vinculado à porta local especificada.
-        // Este socket permitirá enviar e receber pacotes de dados na porta 8080.
 
         while (true) {
             // Inicia um loop infinito, que fará com que o programa continue a escutar e processar pacotes indefinidamente.
 
             byte[] recvBuffer = new byte[1024];
-            // Cria um array de bytes chamado 'recvBuffer' com 1024 posições.
-            // Este buffer será usado para armazenar os dados recebidos.
+            // Cria um array de bytes chamado 'recvBuffer' com 1024 posições. Usado para armazenar os dados recebidos
 
             DatagramPacket receivePacket = new DatagramPacket(recvBuffer, recvBuffer.length);
             // Cria um pacote de datagrama chamado 'receivePacket', que usará 'recvBuffer' para armazenar os dados recebidos.
             // O tamanho do pacote será o comprimento do buffer (1024 bytes).
 
             socket.receive(receivePacket);
-            // O socket aguarda (bloqueia) até receber um pacote.
+            // O socket aguarda (bloqueia a thread) até receber um pacote.
             // Quando um pacote é recebido, os dados são armazenados no 'receivePacket'.
 
             String uppercase = new String(recvBuffer, 0, receivePacket.getLength()).toUpperCase();

@@ -27,7 +27,7 @@ public class Server {
             // Cria um BufferedReader para ler mensagens enviadas pelo cliente
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            // Lê uma linha de mensagem enviada pelo cliente
+            // Lê uma linha de mensagem enviada pelo cliente. Bloqueia a thread
             String message = in.readLine();
 
             // Se a mensagem for "exit", fecha a conexão e encerra o programa

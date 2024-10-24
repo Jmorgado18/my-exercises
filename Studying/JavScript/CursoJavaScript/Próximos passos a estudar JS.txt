@@ -1,0 +1,7 @@
+Aprofundar functions
+Objetos
+modularização
+RegEx
+JSON
+AJAX
+NodeJS

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Galo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .cell {
+            background-color: #e0e0e0;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cell:hover {
+            transform: scale(1.1);
+            background-color: #d4d4d4;
+        }
+
+        .cell.x { color: #333; }
+        .cell.o { color: #999; }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .difficulty-container {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Jogo do Galo</h1>
+        <div class="difficulty-container">
+            <label for="difficulty">Escolhe a dificuldade: </label>
+            <select id="difficulty" class="button">
+                <option value="0">Iniciante</option>
+                <option value="1">Intermediário</option>
+                <option value="2">Expert</option>
+            </select>
+        </div>
+        <div class="grid" id="grid">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <button class="button" onclick="resetGame()">Reiniciar Jogo</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const grid = document.querySelectorAll('.cell');
+        const messageElement = document.getElementById('message');
+        const difficultySelect = document.getElementById('difficulty');
+        let board = Array(9).fill(null);
+        let currentPlayer = 'x'; // Jogador começa com 'x'
+        let isGameActive = true;
+
+        const winConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        grid.forEach(cell => {
+            cell.addEventListener('click', () => handleCellClick(cell));
+        });
+
+        function handleCellClick(cell) {
+            const index = cell.getAttribute('data-index');
+            if (!isGameActive || board[index]) return;
+
+            board[index] = currentPlayer;
+            cell.classList.add(currentPlayer);
+            cell.textContent = currentPlayer.toUpperCase();
+
+            if (checkWin()) {
+                messageElement.textContent = `Jogador ${currentPlayer.toUpperCase()} venceu!`;
+                isGameActive = false;
+                return;
+            }
+
+            if (board.every(cell => cell)) {
+                messageElement.textContent = 'Empate!';
+                isGameActive = false;
+                return;
+            }
+
+            currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+
+            if (currentPlayer === 'o') {
+                setTimeout(() => makeComputerMove(), 500); // Pequeno atraso para a jogada do computador
+            }
+        }
+
+        function makeComputerMove() {
+            let level = parseInt(difficultySelect.value);
+            let move = null;
+
+            if (level === 0) {
+                // Nível Iniciante: Jogada aleatória
+                move = makeRandomMove();
+            } else if (level === 1) {
+                // Nível Intermediário: Defesa básica
+                move = makeBestMove(false); // Não joga perfeitamente
+            } else if (level === 2) {
+                // Nível Expert: Jogada perfeita (minimax)
+                move = makeBestMove(true); // Joga com algoritmo minimax
+            }
+
+            board[move] = currentPlayer;
+            grid[move].classList.add(currentPlayer);
+            grid[move].textContent = currentPlayer.toUpperCase();
+
+            if (checkWin()) {
+                messageElement.textContent = `Computador (O) venceu!`;
+                isGameActive = false;
+                return;
+            }
+
+            currentPlayer = 'x';
+        }
+
+        function makeRandomMove() {
+            const availableMoves = board.map((cell, index) => cell === null ? index : null).filter(v => v !== null);
+            return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+        }
+
+        function makeBestMove(isExpert) {
+            let bestScore = -Infinity;
+            let bestMove = null;
+
+            for (let i = 0; i < board.length; i++) {
+                if (board[i] === null) {
+                    board[i] = 'o';
+                    let score = minimax(board, 0, false, isExpert);
+                    board[i] = null;
+
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMove = i;
+                    }
+                }
+            }
+
+            return bestMove;
+        }
+
+        const scores = { o: 1, x: -1, tie: 0 };
+
+        function minimax(board, depth, isMaximizing, isExpert) {
+            const result = checkWinner();
+            if (result !== null) return scores[result];
+
+            if (!isExpert && Math.random() < 0.3) {
+                return (Math.random() * 2 - 1); // Para Intermediário, faz jogadas não perfeitas
+            }
+
+            if (isMaximizing) {
+                let bestScore = -Infinity;
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === null) {
+                        board[i] = 'o';
+                        let score = minimax(board, depth + 1, false, isExpert);
+                        board[i] = null;
+                        bestScore = Math.max(score, bestScore);
+                    }
+                }
+                return bestScore;
+            } else {
+                let bestScore = Infinity;
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === null) {
+                        board[i] = 'x';
+                        let score = minimax(board, depth + 1, true, isExpert);
+                        board[i] = null;
+                        bestScore = Math.min(score, bestScore);
+                    }
+                }
+                return bestScore;
+            }
+        }
+
+        function checkWin() {
+            return winConditions.some(condition => {
+                return condition.every(index => board[index] === currentPlayer);
+            });
+        }
+
+        function checkWinner() {
+            if (checkWin()) {
+                return currentPlayer;
+            }
+            if (board.every(cell => cell)) {
+                return 'tie';
+            }
+            return null;
+        }
+
+        function resetGame() {
+            board.fill(null);
+            grid.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('x', 'o');
+            });
+            currentPlayer = 'x';
+            isGameActive = true;
+            messageElement.textContent = '';
+        }
+    </script>
+</body>
+</html>

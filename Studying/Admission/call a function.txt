@@ -1,0 +1,29 @@
+/*
+
+Keeping inventory
+You’re creating a function that will be used to print information on a 
+shop item. This information includes the name or description of the item,
+the category it belongs to, how much it is priced at, and how many copies
+of said item exist in the shop right now.
+Modify the function so that it can receive the data. The output should read:
+Item: Tears of the Kingdom
+Category: Video Games
+Price: 59.99
+Amount in Stock: 100
+Then, call the function two more times with values of your choosing.
+
+
+*/
+
+function printInventoryInfo(item, tipo, preco, qtd) {
+		
+    console.log(`Item: ${item}`);
+    console.log(`Category: ${tipo} `);
+    console.log(`Price: ${preco}`);
+    console.log(`Amount in Stock: ${qtd}`);
+}
+
+
+printInventoryInfo('Tears of the Kingdom', 'Video Games', 59.99, 100);
+printInventoryInfo('GTA V', 'Video Games', 5.99, 1);
+printInventoryInfo('FC24', 'Video Games', 59.9, 10);

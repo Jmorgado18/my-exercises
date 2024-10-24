@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title> Primeiros passos com DOM</title>
+    <style>
+        body {
+                background : rgb(85, 108, 239);
+                color: white;
+                font: italic 15pt Arial;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Iniciando estudos com DOM </h1>
+    <p>Aqui vai o resultado</p>
+    <P>Aprendendo a usar o <strong>DOM </strong> em JavaScript.</P>
+    <div name="nome">Receber por nome</div>
+    <div id="msg">Clique em mim</div> 
+    <script>
+        //NOME
+        window.document.write(window.navigator.appName); //explora a arvore do nosso site , acessa todos os elementos 
+        window.document.write("<br>"); //Dar linha de intervalo
+
+        //TAGNAME
+        var p1 = window.document.getElementsByTagName("p")[1]
+        window.document.write("Está escrito assim: " + p1.innerText);
+        window.document.write("<br>")
+        p1.style.color="blue";
+
+        var corpo = window.document.body;
+        corpo.style.background='black';
+        document.write(p1.innerHTML) // vem com o codigo formatdo, no caso o negrito escrito dentro da tag strong
+
+        //TAG POR ID 
+        var d = window.document.getElementById('msg');
+        d.style.background ='green'
+        d.innerText="Estou aguardanto"
+
+
+        var n = window.document.getElementsByName('nome')[0];
+        n.style.background='white';
+        n.style.color='black';
+
+            //TAG POR QUERRYSELECTOR 
+
+            var q = window.document.querySelector('div#msg');
+
+            q.style.color= 'blue';
+
+
+    </script>
+</body>
+</html>

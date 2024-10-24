@@ -1,0 +1,63 @@
+
+/*Hacking Task #5
+Working on the game PocketCreatures, you have been tasked with creating a 
+more sophisticated way of determining damage output in the game’s battle system, 
+depending on the type and weakness of both the attacking and defending creature.
+When an attacking creature is weak to a defender’s type, the attacker does half
+the damage. Example - a fire type will do half damage to a water type.
+When the defending creature is weak to the attacker’s type, the attacker does 
+double damage. Example - a fire type will do double damage to a grass type.
+If they are neither weak nor strong to the other, the attacker does the baseline 
+amount of damage.
+You will create a function named attack() that receives an attacker and a 
+defender and determines whether to return the normal damage amount, double it, 
+or half it, depending on the attacker and defender type matchup.
+*/
+
+
+
+function attack(attacker, defender) {
+  
+  if (attacker.type===defender.type) {
+    return damage ;
+    
+  }
+  
+  
+  if (defender.weakness === attacker.type) {
+    return damage * 2; 
+  }
+  
+  if (attacker.weakness === defender.type) {
+    return damage / 2; 
+  }
+  
+}
+
+
+
+const ember = {
+  type: 'fire',
+  weakness: 'water'
+}
+
+const blade = {
+  type: 'grass',
+  weakness: 'fire'
+}
+
+const damage = 10;
+
+let emberDamageOutput = attack(ember, blade);
+let bladeDamageOutput = attack(blade, ember);
+
+console.log(`Ember will do ${emberDamageOutput} damage to Blade.`);
+console.log(`Blade will do ${bladeDamageOutput} damage to Ember.`);
+
+
+
+  
+ 
+ 
+  
+

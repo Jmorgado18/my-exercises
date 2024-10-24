@@ -1,0 +1,61 @@
+/* 
+
+Hacking Task #3
+Working on the PocketCreatures game, you have been tasked with creating the 
+ability to have teams.
+Both teams should be filled with 6 random PocketCreatures of either type water,
+fire or grass. Your code should use a random expression to pick a type from the 
+possibilities array and add it to either the playerTeam or opponentTeam using 
+the array method push.
+You should print each time what type of creature both the player and opponent
+got on their teams. If the creature just added to the team is the same type as 
+the previous addition (for either the player team or the opponent team), then 
+print Twice in a row? What are the odds! For example:
+Player got fire and opponent got grass
+
+*/
+
+
+const playerTeam = [];
+const opponentTeam = [];
+const possibilities = ['water', 'fire', 'grass'];
+
+// Equipa do player
+for (let i = 0; i < 6; i++) {
+  let possibilidade = Math.floor(Math.random() * 3);
+  playerTeam.push(possibilities[possibilidade]);
+}
+
+// Equipa do opponent
+for (let z = 0; z < 6; z++) {
+  let possibilidade2 = Math.floor(Math.random() * 3);
+  opponentTeam.push(possibilities[possibilidade2]);
+}
+
+for (let i = 0; i < playerTeam.length && i < opponentTeam.length; i++) {
+  if (playerTeam[i] === opponentTeam[i]) {
+    // Remover elementos que são iguais
+    playerTeam.splice(i, 1);
+    opponentTeam.splice(i, 1);
+    i--; // Ajusta o índice para compensar a remoção
+  } else if (
+    (playerTeam[i] === "water" && opponentTeam[i] === "fire") ||
+    (playerTeam[i] === "fire" && opponentTeam[i] === "grass") ||
+    (playerTeam[i] === "grass" && opponentTeam[i] === "water")
+  ) {
+    // Player vence
+    opponentTeam.splice(i, 1);
+    i--; // Ajusta o índice
+  } else if (
+    (opponentTeam[i] === "water" && playerTeam[i] === "fire") ||
+    (opponentTeam[i] === "fire" && playerTeam[i] === "grass") ||
+    (opponentTeam[i] === "grass" && playerTeam[i] === "water")
+  ) {
+    // Opponent vence
+    playerTeam.splice(i, 1);
+    i--; // Ajusta o índice
+  }
+}
+
+console.log("A Equipa do opponent é: " + opponentTeam);
+console.log("A Equipa do Player é: " + playerTeam);

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Sistemas de Numeração</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Sistemas de Numeração</h1>
+        <div class="form-group">
+            <label for="inputValue">Número:</label>
+            <input type="text" id="inputValue" placeholder="Introduza o número">
+        </div>
+        <div class="form-group">
+            <label for="inputBase">Base de Entrada:</label>
+            <select id="inputBase">
+                <option value="2">Binário (Base 2)</option>
+                <option value="10">Decimal (Base 10)</option>
+                <option value="16">Hexadecimal (Base 16)</option>
+                <option value="4">Lagosta (Base 4)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="outputBase">Base de Saída:</label>
+            <select id="outputBase">
+                <option value="2">Binário (Base 2)</option>
+                <option value="10">Decimal (Base 10)</option>
+                <option value="16">Hexadecimal (Base 16)</option>
+                <option value="4">Lagosta (Base 4)</option>
+            </select>
+        </div>
+        <button onclick="convert()">Converter</button>
+        <div class="result">
+            <h2>Resultado:</h2>
+            <p id="resultValue"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

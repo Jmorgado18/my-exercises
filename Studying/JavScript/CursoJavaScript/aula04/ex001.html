@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu primeiro programa</title>
+    <style>
+        body {
+
+            background-color: beige;
+            color :brown;
+            font : normal 20 pt Arial;
+            h1 {
+                color:rgb(231, 7, 134)
+            }
+        }
+    </style>
+</head>
+<body>
+  <h1>  Hello, World!</h1>
+ <p> Viva o FCP</p>
+
+ <script>
+   // window.alert ('Alerta! Site privado');
+   let verificacao= window.confirm ('O benfica é merda?');
+   let nome =  window.prompt('Como te chamas?');
+   if (verificacao===true){
+
+   window.alert (`O ${nome} disse que o benfica é merda`)
+   }else if (verificacao===false){
+    window.alert(`O ${nome} é estupido`)
+}
+ </script>
+</body>
+</html>

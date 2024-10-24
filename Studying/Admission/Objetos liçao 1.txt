@@ -1,0 +1,64 @@
+
+// 1 construção dos dados 
+
+
+const person ={
+  name: 'João',
+  idade: '10',
+  morada : 'Rio Tinto',
+  irmao: ['David', 'Miguel', 'Gomes'], // um array dentro de um objeto que guarda tres valores . 
+  parentes : { // um objeto dentro de um objeto
+    mae : 'Elisabete',
+    pai : 'Arlindo'
+    
+  }
+};
+
+
+
+/*
+Podemos também criar o objeto sem dados e adiciona-los depois da seguinte forma : 
+const person ={};
+  person.name= 'João';
+  person.idade= '10',
+  person.morada= 'Rio Tinto'
+
+  */
+
+// 2 guardar dados do objeto em novas variaveis
+
+let nome = person.name;
+let idd=person.idade;
+let local=person.morada;
+let DifIdd= 18 - person.idade;
+
+// 3 alterar a variável morada
+person.morada = "Gondomar";
+
+
+//4 adicionar uma variável dentro do objeto
+
+person.qtdIrmaos=person.irmao.length;
+console.log (person.qtdIrmaos);
+
+person.parentes.avo='Isaura';
+
+//console.log (DifIdd);
+
+/*5 verificar se é maior idade
+	se sim - mensagem a apresentar os dados 
+	se não - dizer quantos anos faltam para atingir a maior idade */
+
+if (idd >= 18) {
+  console.log (` O ${nome} tem ${idd} e é maior de idade, vivia em ${local} e agora vive em ${person.morada}`);
+  
+  
+}else{
+  
+  console.log (`O ${person.name} tem ${person.idade}. Ainda lhe faltam ${DifIdd} para atingir a maioridade. Os seus irmaos são ${person.irmao[0]}, ${person.irmao[1]} e ${person.irmao[2]}. Os seus parentes são ${person.parentes.mae} e ${person.parentes.pai} e ${person.parentes.avo}`);
+  
+}
+
+
+
+

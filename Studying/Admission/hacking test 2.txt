@@ -1,0 +1,62 @@
+/*
+
+Hacking Task #2
+Working on the game PocketCreatures, you have been tasked with designing 
+a battle system. In this system, the player and an opponent battle by reducing
+the other’s health by 10 each round. They continue to do this until one of them 
+faints (has their health reduced to 0).
+Each round they both generate a random value (between 0 and 10) to determine
+whether they get a critical hit, an explosive damage. This is risky - done
+correctly and they do double damage to the other, but it could also explode
+in their own face. This is determined by the value generated - below 1 and 
+they fail, immediately losing all their health and logging either the message 
+Critical fail! Opponent has lost or Critical fail! Player has lost accordingly. 
+Anything equal to 7.5 and above is a success and they do 20 damage to their
+opponent rather than the usual 10.
+At the end of the game, after the game loop, a message is printed revealing 
+who the winner is (whoever has more health than the other): Player wins! or 
+Opponent wins!. If they both have the same amount of health, the message Both
+have fainted! is displayed.
+Note: Maintain and use the variables playerHealth, opposingHealth, playerCrit
+and opposingCrit
+
+*/
+
+let playerHealth=100;
+let opponentHealth=100;
+
+while ((playerHealth > 0) || (opponentHealth  > 0)) {
+  
+  let playerAtack = (Math.floor(Math.random()*10));
+  console.log (`PlayerAtack = ${playerAtack}`);
+  
+      if (playerAtack <= 1 ){
+        playerHealth = 0 ;
+        console.log ("Player Hit Himself. Player died");
+        break;
+        
+      }else if (playerAtack > 8) {
+        opponentHealth = opponentHealth - 20 ;
+        console.log (`opponentHealth= ${opponentHealth}`);
+      }else{
+        opponentHealth = opponentHealth -10;
+        console.log (`opponentHealth= ${opponentHealth}`);
+      }
+    
+  
+  let opponentAtack = (Math.floor(Math.random()*10));
+  console.log (`Opponent Atack = ${opponentAtack}`);
+  if (opponentAtack<= 1 ){
+        opponentHealth = 0 ;
+        console.log ("Opponent Hit Himself. Opponent died");
+        break;
+        
+      }else if (opponentAtack > 8) {
+        playerHealth = playerHealth - 20 ;
+        console.log (`Player Health= ${playerHealth}`);
+      }else{
+        playerHealth = playerHealth -10;
+         console.log (`Player Health= ${playerHealth}`);
+      }
+}
+

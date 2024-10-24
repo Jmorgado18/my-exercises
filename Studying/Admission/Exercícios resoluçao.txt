@@ -1,0 +1,194 @@
+/*
+
+Exercício 1: Contador Simples
+Objetivo: Praticar a impressão de valores e o uso de variáveis.
+
+Crie um programa que imprima números de 1 a 5 no console, um por linha.
+
+*/
+
+
+
+for ( i = 1 ;  i <=5; i++ ) {
+  
+  console.log (i);
+  
+}
+
+
+/* Exercício 2: Calculadora de Soma
+Objetivo: Trabalhar com variáveis e expressões matemáticas.
+
+realize todas as operaçoes matematicas
+ */
+ let a = 5;
+ let b = 10; 
+ let soma = a+b;
+ let sub = a-b;
+ let div = a/b;
+ let mult = a+b;
+ 
+ console.log (` 
+  soma ${soma}
+  sub ${sub}
+  div ${div}
+  mult ${mult}
+  `)
+  
+  /*
+  
+  Exercício 3: Mensagem Personalizada
+Objetivo: Manipular strings e usar variáveis.
+
+Crie um programa que peça ao usuário seu nome e idade, e
+então imprima uma mensagem no console: "Olá [nome], você tem [idade] anos!"
+
+  
+  */
+ 
+ let idade =33;
+ let nome = 'João';
+ 
+ console.log (`O meu nome é ${nome} e tenho ${idade}`);
+ 
+ /*
+ 
+ Exercício 4: Palíndromo
+Objetivo: Trabalhar com métodos de strings.
+
+Escreva uma função que receba uma string e verifique se é um palíndromo
+(ou seja, se a string é igual quando lida de trás para frente). 
+A função deve retornar true ou false.
+
+
+*/
+
+let nome1 = "Hannah";
+
+
+let nomeMaius = nome1.toUpperCase();
+
+
+let ehPalindromo = true;
+
+// Percorre a palavra comparando os caracteres
+
+for (let i = 0; i < nomeMaius.length / 2; i++) {
+  if (nomeMaius[i] !== nomeMaius[nomeMaius.length - 1 - i]) {
+    ehPalindromo = false;
+    break;
+  }
+}
+
+if (ehPalindromo) {
+  console.log(`A palavra ${nome1} é um palíndromo.`);
+} else {
+  console.log(`A palavra ${nome1} NÃO é um palíndromo.`);
+}
+
+
+  
+/* 
+
+Exercício 5: Checagem de Idade
+Objetivo: Usar condicionais e booleanos.
+
+Crie um programa que peça ao usuário sua idade e verifique se 
+ele é maior de idade (18 anos ou mais). Imprima uma mensagem no
+console indicando se o usuário é maior de idade ou não.
+
+
+*/
+
+let idade1 =4;
+
+if (idade1 >= 18){
+  console.log ("Maior de idade");
+  
+}else{
+  console.log ("Menor de idade")
+  
+}
+
+
+/*
+
+Exercício 6: Jogo de Adivinhação
+Objetivo: Utilizar loops e condicionais.
+
+Desenvolva um jogo simples onde o computador escolhe um número 
+aleatório entre 1 e 10 e o usuário tem 3 tentativas para adivinhar o número. 
+Após cada tentativa, informe ao usuário se o palpite foi correto ou não.
+
+
+*/
+
+let aleat = Math.floor(Math.random() * 10 + 1);
+let inser = 5;
+
+console.log("Número aleatório:", aleat);
+
+for (let i = 0; i < 3; i++) {
+  if (inser === aleat) {
+    console.log("Acertou");
+    break; 
+  } else {
+    console.log("Errou");
+    break; 
+  }
+}
+
+
+/*
+
+Exercício 7: Tabela de Multiplicação
+Objetivo: Trabalhar com loops e arrays.
+
+Crie um programa que gere uma tabela de multiplicação de 1 a 10.
+Utilize um array para armazenar os resultados e um loop for para imprimir
+a tabela no console.
+
+
+*/
+
+// Inicializa um array vazio para armazenar a tabela de multiplicação
+let tabela = [];
+
+// Loop para as linhas da tabela (números de 1 a 10)
+for (let i = 1; i <= 10; i++) {
+  // Inicializa uma linha vazia
+  let linha = [];
+
+  // Loop para as colunas da tabela (números de 1 a 10)
+  for (let j = 1; j <= 10; j++) {
+    // Calcula o resultado da multiplicação e armazena na linha
+    linha.push(i * j);
+  }
+
+  // Adiciona a linha completa à tabela
+  tabela.push(linha);
+}
+
+// Imprime a tabela de multiplicação no console
+for (let i = 0; i < tabela.length; i++) {
+  console.log(tabela[i].join(' '));
+}
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+ 
+ 
+ 
+ 

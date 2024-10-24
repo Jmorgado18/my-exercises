@@ -1,0 +1,41 @@
+const person = {
+    firstName: 'Christina',
+    numberOfChildren: 1,
+    over30: true,
+    currentHairColour: 'Green',
+    numberOfTattoos: 2
+};
+
+let nome=person.firstName; //guarda o person.firstname (Chirstina) numa nova variavel (nome)
+
+
+//As seguintes console.log resultam no mesmo
+
+console.log (person.firstName);
+console.log (nome);  
+
+//Para alterar um valor 
+person.numberOfTattoos=5;
+console.log (person.numberOfTattoos);
+
+//adiciona uma propriedade ao objeto person
+person.filhos = 3;
+console.log (person.filhos);
+
+//adicionar um array ao objeto 
+person.brinquedos = ['ps5', 'computer' , 'Ball'];
+
+//console.log (person);
+
+//acessar a um elemento do array :
+
+console.log (person.brinquedos[2]); //Ball
+
+//adicionar um objeto dentro de um objeto :
+person.nomesfilhos = {}; // cria o objeto dentro de outro objeto
+person.nomesfilhos.nome = 'João';
+person.nomesfilhos.idade=33;
+
+
+console.log (person);
+

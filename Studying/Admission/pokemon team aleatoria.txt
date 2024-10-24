@@ -1,0 +1,24 @@
+const playerTeam = [];
+const opponentTeam = [];
+const possibilities = ['water', 'fire', 'grass'];
+
+function getRandomItem(array) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+}
+
+for (let i = 0; i < 6; i++) {
+    playerTeam.push(getRandomItem(possibilities));
+    opponentTeam.push(getRandomItem(possibilities));
+    
+    console.log('Player got ' + playerTeam[playerTeam.length - 1] + ' and opponent got ' + opponentTeam[opponentTeam.length - 1]);
+
+    // Verificar se a criatura adicionada é do mesmo tipo que a anterior em qualquer equipe
+    if (playerTeam[i] === playerTeam[i - 1] || opponentTeam[i] === opponentTeam[i - 1]) {
+        console.log("Twice in a row? What are the odds!");
+    }
+}
+
+// Mostrar os arrays finais para verificação
+//console.log('Final playerTeam:', playerTeam);
+//console.log('Final opponentTeam:', opponentTeam);

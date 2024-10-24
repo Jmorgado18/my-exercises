@@ -1,0 +1,48 @@
+
+//Guardar uma funçao dentro de uma variavel
+
+let add = function(n1, n2) {
+  //retorna a soma de n1 e n2 
+  return n1 + n2;
+}
+//guarda na variavel result o resultado da funao add 
+let result = add(3, 7);
+console.log (result); //resulta em 10 
+
+//alteramos os valores para invocar de novo a funçao 
+result = add(2, 6);
+console.log (result); //resulta em 8
+
+
+//E se quisermos criar um objeto com varias funções como uma calculadora ?
+
+const calculadora2 = {
+  add: function(n1, n2) {
+    return n1 + n2;
+  },
+  subtract: function(n1, n2) {
+    return n1 - n2;
+  },
+  multiply: function(n1, n2) {
+    return n1 * n2;
+  },
+  divide: function(n1, n2) {
+    return n1 / n2;
+  }
+}
+
+let sum = calculadora2.add(9,1);
+let product = calculadora2.multiply(10, 6);
+
+console.log('Result of add: ' + sum);
+console.log('Result of multiply: ' + product);
+
+
+//criar um array 
+const words = ['how', 'are', 'you?'];
+//criar um array que tem uma funçao como argumento . ( => tambem cria uma função (element)) 
+
+const resultArr = words.map(element => element.toUpperCase());
+console.log(words);
+console.log(resultArr);
+

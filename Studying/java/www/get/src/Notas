@@ -1,0 +1,8 @@
+Explicação do código:
+
+URL: Define a URL para acessar os dados.
+HttpURLConnection: Abre uma conexão à URL.
+setRequestMethod("GET"): Define que estamos a fazer uma requisição GET.
+getResponseCode(): Verifica o código de resposta (ex: 200 OK).
+BufferedReader: Lê os dados retornados.
+connection.disconnect(): Fecha a conexão.

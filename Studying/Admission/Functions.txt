@@ -1,0 +1,148 @@
+//exemplo de uma função
+
+function nrrandom() {
+
+   let numero = (Math.floor(Math.random() * 10));
+    console.log (numero);
+}
+
+//Chamar a função 
+nrrandom();
+
+// console.log (numero); - chamar a variavel que esta dentro da funçao dá erro !
+
+//podemos usar variaveis de fora dentro do loop (Neste caso o contador continua a contar se o nrrandom2 for diferente de 5: 
+
+let contador =0;
+
+function nrrandom2() {
+  let numero2 = (Math.floor(Math.random() * 11));
+  if (numero2 != 5) {
+    contador=contador+1;
+  }
+}
+nrrandom2();
+nrrandom2();
+
+console.log (contador);
+
+// Criar funçoes sendo que os parametros la dentro podem ser mudadas a partir de fora
+
+function formatEmail(recipient, sender, subject, message) {
+
+    let email = `To: ${recipient}
+From: ${sender}
+Subject: ${subject}
+Message: ${message}`;
+
+    console.log(email);
+}
+
+//Sempre que chamamos a funçao, devemos indicar quais os valores para cada parametro
+formatEmail('Bill','joao','importante','ola');
+formatEmail('Zeca','Tony','telopes','xau ai');
+
+//Usar o return
+
+function calculargasto(dinheiro,gasto){
+  return (dinheiro-gasto);
+  
+}
+//guardamos o valor calculado dentro da function dentro da varialve compra1
+let compra1 = calculargasto (50,10);
+console.log (compra1);
+
+//o Return pode retornar uma variavel , uma expressão ou um valor 
+
+function returnsVariable() {
+    let variable = 10;
+    return variable;
+}
+
+function returnsExpression() {
+    return 5 * 2;
+}
+
+function returnsValue() {
+    return 10;
+}
+
+//Guardamos em variaveis o que retornamos com o return 
+let r1 = returnsVariable(); // 10
+let r2 = returnsExpression(); // 10
+let r3 = returnsValue(); // 10
+
+
+//Criar a função getMessage.
+function getMessage(sender, recipient, message) {
+  //Retornar os parametros sender, recipient, message 
+    return `To: ${recipient}
+        From: ${sender}
+        Message: ${message}`;
+}
+//Guardar o retorno na variavel mensagem
+let mensagem = getMessage('Joao', 'Bia', 'Ola');
+
+console.log (mensagem);
+//criar a função 
+function checkOver18(age) {
+  
+  //verifica se é maior de idade
+    return age >= 18;
+    
+}
+//guarda a verificaçao na variavel maioridade
+let maioridade = checkOver18(18);
+console.log (maioridade);
+
+//cria função
+function criarCao (nome, idade, raça) {
+  //retorna o nome/idade/raça 
+    return {
+        nome: nome,
+        idade : idade,
+        raça: raça
+    }
+}
+//guarda na variavel dog com os parametros a frente o que retornou de dentro da funão 
+const dog = criarCao('Bob', 6, 'French Bulldog');
+
+console.log (dog);
+
+//Nota : Um return faz com que o codigo pare naquele momento dentro da function
+
+function getPossibleActivities(tempo) {
+
+    if(tempo === 'chuva') {
+        return ['Cinema', 'Shopping', 'Teatro'];
+    } else {
+        return ['Praia', 'Passeio', 'Caminhada'];
+    }
+}
+
+const activities = getPossibleActivities('chuva');
+console.log(activities);
+
+// E se quisermos guardar mais que um valor dentro de uma funçao visto que o return fecha a nossa funçao , podemos guardar dentro de um objeto
+
+function operacao(n1, n2) {
+    return {
+        soma: n1 + n2,
+        subtracao: n1 - n2,
+        multiplicacao: n1*n2,
+        divisao: n1/n2
+    };
+}
+
+let resultados = operacao(55, 45);
+
+console.log('Soma:', resultados.soma);          // Imprime a soma
+console.log('Difference:', resultados.subtracao); // Imprime a subtração
+console.log('multiplicacao:', resultados.multiplicacao);          // Imprime a multiplicacao
+console.log('divisao:', resultados.divisao); // Imprime a divisao
+
+console.log (resultados);
+
+console.log (resultados.multiplicacao);
+
+

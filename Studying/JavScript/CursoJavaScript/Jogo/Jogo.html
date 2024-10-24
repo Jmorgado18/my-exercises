@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Números</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        #game-container {
+            display: grid;
+            grid-template-columns: repeat(9, 50px);
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-size: 20px;
+            user-select: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cell.selected {
+            background-color: #d3d3d3;
+            transform: scale(1.1);
+        }
+        .cell.empty {
+            background-color: #f5f5f5;
+        }
+        .cell.highlight {
+            background-color: #ffeb3b;
+        }
+        #buttons-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        button.selected {
+            background-color: #0056b3;
+            color: #e0e0e0;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+        }
+        #highscore {
+            margin-top: 10px;
+            font-size: 18px;
+            color: green;
+        }
+        .selected {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Números</h1>
+    <div id="game-container"></div>
+    <div id="buttons-container">
+        <button id="help-button">Ajuda</button>
+        <button id="add-lines-button">Adicionar Linhas</button>
+        <button id="undo-button">Desfazer</button>
+        <button id="new-game-button">Novo Jogo</button>
+        <span id="lines-left">Linhas restantes: 6</span>
+    </div>
+    <div id="message"></div>
+    <div id="highscore">Pontuação: 0</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const rows = 3;
+            const columns = 9;
+            const maxAdditions = 6;
+            let additionsLeft = maxAdditions;
+            let grid = [];
+            let selectedCell = null;
+            let lastMove = null;
+            let score = 0;
+            let highscore = 0;
+
+            const gameContainer = document.getElementById('game-container');
+            const message = document.getElementById('message');
+            const helpButton = document.getElementById('help-button');
+            const addLinesButton = document.getElementById('add-lines-button');
+            const undoButton = document.getElementById('undo-button');
+            const newGameButton = document.getElementById('new-game-button');
+            const linesLeftSpan = document.getElementById('lines-left');
+            const highscoreDisplay = document.getElementById('highscore');
+
+            function initializeGame() {
+                grid = [];
+                for (let i = 0; i < rows; i++) {
+                    const row = [];
+                    for (let j = 0; j < columns; j++) {
+                        row.push(Math.floor(Math.random() * 9) + 1);
+                    }
+                    grid.push(row);
+                }
+                additionsLeft = maxAdditions;
+                linesLeftSpan.textContent = `Linhas restantes: ${additionsLeft}`;
+                message.textContent = '';
+                renderGrid();
+            }
+
+            function renderGrid() {
+                gameContainer.innerHTML = '';
+                grid.forEach((row, rowIndex) => {
+                    row.forEach((cell, colIndex) => {
+                        const cellElement = document.createElement('div');
+                        cellElement.className = 'cell';
+                        cellElement.textContent = cell || '';
+                        if (cell === 0) {
+                            cellElement.classList.add('empty');
+                        } else {
+                            cellElement.addEventListener('click', () => handleCellClick(rowIndex, colIndex));
+                        }
+                        gameContainer.appendChild(cellElement);
+                    });
+                });
+                removeEmptyRows();
+            }
+
+            function handleCellClick(row, col) {
+                if (selectedCell) {
+                    const [prevRow, prevCol] = selectedCell;
+                    const prevValue = grid[prevRow][prevCol];
+                    const currValue = grid[row][col];
+
+                    if (isValidMove(prevRow, prevCol, row, col)) {
+                        lastMove = { prevRow, prevCol, prevValue, row, col, currValue };
+                        grid[prevRow][prevCol] = 0;
+                        grid[row][col] = 0;
+                        score += 10;
+                        updateScore();
+                        renderGrid();
+                        checkGameOver();
+                    }
+                    selectedCell = null;
+                } else {
+                    selectedCell = [row, col];
+                }
+            }
+
+            function isValidMove(r1, c1, r2, c2) {
+                const val1 = grid[r1][c1];
+                const val2 = grid[r2][c2];
+                if (val1 === val2 || val1 + val2 === 10) {
+                    if (r1 === r2 || c1 === c2 || Math.abs(r1 - r2) === Math.abs(c1 - c2)) {
+                        return isLineClear(r1, c1, r2, c2);
+                    }
+                    if (areInConsecutiveLines(r1, c1, r2, c2)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function isLineClear(r1, c1, r2, c2) {
+                if (r1 === r2) { // Horizontal check
+                    const minCol = Math.min(c1, c2);
+                    const maxCol = Math.max(c1, c2);
+                    for (let c = minCol + 1; c < maxCol; c++) {
+                        if (grid[r1][c] !== 0) return false;
+                    }
+                } else if (c1 === c2) { // Vertical check
+                    const minRow = Math.min(r1, r2);
+                    const maxRow = Math.max(r1, r2);
+                    for (let r = minRow + 1; r < maxRow; r++) {
+                        if (grid[r][c1] !== 0) return false;
+                    }
+                } else if (Math.abs(r1 - r2) === Math.abs(c1 - c2)) { // Diagonal check
+                    const rStep = r1 < r2 ? 1 : -1;
+                    const cStep = c1 < c2 ? 1 : -1;
+                    let r = r1 + rStep;
+                    let c = c1 + cStep;
+                    while (r !== r2) {
+                        if (grid[r][c] !== 0) return false;
+                        r += rStep;
+                        c += cStep;
+                    }
+                } else {
+                    return false;
+                }
+                return true;
+            }
+
+            function areInConsecutiveLines(r1, c1, r2, c2) {
+                return r1 === r2 - 1 && grid[r1][c1] === grid[r2][c2];
+            }
+
+            function checkGameOver() {
+                if (!findValidMove()) {
+                    if (additionsLeft === 0) {
+                        message.textContent = "Fim de jogo! Sem movimentos válidos restantes.";
+                    } else {
+                        message.textContent = "Sem movimentos válidos restantes. - Adicione uma linha";
+                    }
+                } else if (grid.flat().every(cell => cell === 0) && additionsLeft > 0) {
+                    additionsLeft = maxAdditions;
+                    linesLeftSpan.textContent = `Linhas restantes: ${additionsLeft}`;
+                    message.textContent = "Parabéns! Você limpou todas as linhas!";
+                }
+            }
+
+            function findValidMove() {
+                for (let r1 = 0; r1 < grid.length; r1++) {
+                    for (let c1 = 0; c1 < columns; c1++) {
+                        for (let r2 = r1; r2 < grid.length; r2++) {
+                            for (let c2 = (r1 === r2 ? c1 + 1 : 0); c2 < columns; c2++) {
+                                if (isValidMove(r1, c1, r2, c2)) {
+                                    return { r1, c1, r2, c2 };
+                                }
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+
+            function highlightMove(move) {
+                const cells = document.querySelectorAll('.cell');
+                cells[move.r1 * columns + move.c1].classList.add('highlight');
+                cells[move.r2 * columns + move.c2].classList.add('highlight');
+            }
+
+            function handleHelp() {
+                const move = findValidMove();
+                if (move) {
+                    highlightMove(move);
+                } else {
+                    alert("Não há pares restantes");
+                }
+            }
+
+            function handleAddLines() {
+                if (additionsLeft <= 0) return;
+
+                const availableNumbers = grid.flat().filter(n => n !== 0);
+                if (availableNumbers.length === 0) return;
+
+                for (let i = 0; i < 3; i++) {
+                    const newRow = Array(columns).fill(0).map(() => Math.random() < 0.5 ? 0 : availableNumbers[Math.floor(Math.random() * availableNumbers.length)]);
+                    grid.push(newRow);
+                }
+
+                additionsLeft--;
+                linesLeftSpan.textContent = `Linhas restantes: ${additionsLeft}`;
+                renderGrid();
+            }
+
+            function handleUndo() {
+                if (lastMove) {
+                    const { prevRow, prevCol, prevValue, row, col, currValue } = lastMove;
+                    grid[prevRow][prevCol] = prevValue;
+                    grid[row][col] = currValue;
+                    score -= 10;
+                    updateScore();
+                    renderGrid();
+                    lastMove = null;
+                }
+            }
+
+            function updateScore() {
+                highscoreDisplay.textContent = `Pontuação: ${score}`;
+            }
+
+            function handleNewGame() {
+                initializeGame();
+                score = 0;
+                updateScore();
+            }
+
+            function removeEmptyRows() {
+                grid = grid.filter(row => row.some(cell => cell !== 0));
+                const emptyRows = grid.length < rows ? rows - grid.length : 0;
+                for (let i = 0; i < emptyRows; i++) {
+                    grid.unshift(Array(columns).fill(0));
+                }
+                renderGrid();
+            }
+
+            helpButton.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                handleHelp();
+            });
+            addLinesButton.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                handleAddLines();
+            });
+            undoButton.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                handleUndo();
+            });
+            newGameButton.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                handleNewGame();
+            });
+
+            initializeGame();
+        });
+    </script>
+</body>
+</html>

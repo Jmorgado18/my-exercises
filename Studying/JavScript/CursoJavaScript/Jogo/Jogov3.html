@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Numbers</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px;
+            color: #4a90e2;
+        }
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(9, 50px);
+            gap: 5px;
+            justify-content: center;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cell.selected {
+            background-color: #dbe5ec;
+            transform: scale(1.1);
+        }
+        .cell.help-selected {
+            background-color: #FFD700; /* Destaque para a célula */
+        }
+        .button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #357abd;
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        #controls {
+            text-align: center;
+            margin: 20px;
+        }
+        #message {
+            text-align: center;
+            font-size: 18px;
+            color: #e94e77;
+            margin: 20px;
+        }
+        #rules {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+        #rules h2 {
+            margin-top: 0;
+            color: #4a90e2;
+        }
+        #rules ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 15px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+        #footer img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        #footer p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Match Numbers</h1>
+    <div id="grid"></div>
+    <div id="controls">
+        <button id="addRowsButton" class="button">Adicionar Linhas (6 restantes)</button>
+        <button id="helpButton" class="button">Ajuda</button>
+        <button id="undoButton" class="button">Desfazer</button>
+        <button id="newGameButton" class="button">Novo Jogo</button>
+    </div>
+    <div id="message"></div>
+    <div id="rules">
+        <h2>Regras do Jogo</h2>
+        <ul>
+            <li>Os números devem estar em células diferentes e podem ser conectados se:</li>
+            <li>1. A soma dos dois números for 10.</li>
+            <li>2. Os números forem iguais.</li>
+            <li>3. Os números estejam em células adjacentes (horizontal, vertical, ou diagonal perfeita com células vazias entre eles).</li>
+            <li>4. Em linhas diferentes, desde que entre a célula da linha superior e o final da linha, e a célula da linha inferior e o início da linha, sejam apenas espaços vazios e a soma dos números seja 10 ou os números sejam iguais.</li>
+            <li>5. Não é possível clicar duas vezes na mesma célula.</li>
+            <li>6. Se não houver movimentos possíveis, o botão de ajuda alertará.</li>
+            <li>7. O objetivo do jogo é limpar todas as células.</li>
+        </ul>
+    </div>
+    <div id="footer">
+        <p>Este jogo foi realizado para a minha batuzinha</p>
+        <img src="footer-image.jpg" alt="Imagem de Rodapé"> <!-- Certifique-se de ter a imagem correta no caminho especificado -->
+    </div>
+
+    <script>
+        const rows = 3;
+        const cols = 9;
+        let grid = generateGrid(rows, cols);
+        let selectedCells = [];
+        let maxAdds = 6;
+        let undoStack = [];
+
+        const gridElement = document.getElementById('grid');
+        const addRowsButton = document.getElementById('addRowsButton');
+        const helpButton = document.getElementById('helpButton');
+        const undoButton = document.getElementById('undoButton');
+        const newGameButton = document.getElementById('newGameButton');
+        const alertMessage = document.getElementById('message');
+
+        function generateGrid(rows, cols) {
+            return Array.from({ length: rows }, () => Array.from({ length: cols }, () => Math.floor(Math.random() * 9) + 1));
+        }
+
+        function renderGrid(grid) {
+            gridElement.innerHTML = '';
+            grid.forEach((row, rowIndex) => {
+                row.forEach((cell, colIndex) => {
+                    const cellElement = document.createElement('div');
+                    cellElement.className = 'cell';
+                    cellElement.textContent = cell !== 0 ? cell : '';
+                    cellElement.dataset.row = rowIndex;
+                    cellElement.dataset.col = colIndex;
+                    cellElement.addEventListener('click', () => handleCellClick(cellElement));
+                    gridElement.appendChild(cellElement);
+                });
+            });
+        }
+
+        function handleCellClick(cellElement) {
+            const row = parseInt(cellElement.dataset.row);
+            const col = parseInt(cellElement.dataset.col);
+            const cellValue = grid[row][col];
+
+            if (selectedCells.length === 0) {
+                selectedCells.push({ row, col, value: cellValue, element: cellElement });
+                cellElement.classList.add('selected');
+            } else if (selectedCells.length === 1 && (selectedCells[0].row !== row || selectedCells[0].col !== col)) {
+                const [firstCell] = selectedCells;
+                if (cellValue === firstCell.value || (cellValue + firstCell.value === 10)) {
+                    if (isValidConnection(firstCell.row, firstCell.col, row, col)) {
+                        removeCells(firstCell, { row, col, value: cellValue, element: cellElement });
+                    } else {
+                        shakeCells(firstCell.element, cellElement);
+                    }
+                } else {
+                    shakeCells(firstCell.element, cellElement);
+                }
+            }
+        }
+
+        function isValidConnection(row1, col1, row2, col2) {
+            if (row1 === row2) {
+                return checkClearPath(grid[row1], col1, col2);
+            } else if (col1 === col2) {
+                return checkClearPath(grid.map(r => r[col1]), row1, row2);
+            } else if (Math.abs(row1 - row2) === Math.abs(col1 - col2)) {
+                return checkDiagonalPath(row1, col1, row2, col2);
+            }
+            return false;
+        }
+
+        function checkClearPath(line, start, end) {
+            const [low, high] = start < end ? [start, end] : [end, start];
+            for (let i = low + 1; i < high; i++) {
+                if (line[i] !== 0) return false;
+            }
+            return true;
+        }
+
+        function checkDiagonalPath(row1, col1, row2, col2) {
+            const rowStep = row2 > row1 ? 1 : -1;
+            const colStep = col2 > col1 ? 1 : -1;
+            let r = row1 + rowStep;
+            let c = col1 + colStep;
+            while (r !== row2 && c !== col2) {
+                if (grid[r][c] !== 0) return false;
+                r += rowStep;
+                c += colStep;
+            }
+            return true;
+        }
+
+        function shakeCells(cell1, cell2) {
+            cell1.classList.add('shake');
+            cell2.classList.add('shake');
+            setTimeout(() => {
+                cell1.classList.remove('shake');
+                cell2.classList.remove('shake');
+            }, 500);
+        }
+
+        function removeCells(firstCell, secondCell) {
+            undoStack.push({ first: { row: firstCell.row, col: firstCell.col, value: grid[firstCell.row][firstCell.col] }, second: { row: secondCell.row, col: secondCell.col, value: grid[secondCell.row][secondCell.col] } });
+            grid[firstCell.row][firstCell.col] = 0;
+            grid[secondCell.row][secondCell.col] = 0;
+            firstCell.element.textContent = '';
+            secondCell.element.textContent = '';
+            firstCell.element.classList.remove('selected');
+            secondCell.element.classList.remove('selected');
+            selectedCells = [];
+            checkAndRemoveEmptyRows();
+            renderGrid(grid);
+        }
+
+        function checkAndRemoveEmptyRows() {
+            grid = grid.filter(row => row.some(cell => cell !== 0));
+            while (grid.length < rows) {
+                grid.unshift(Array(cols).fill(0));
+            }
+        }
+
+        function addRows() {
+            if (maxAdds <= 0) return;
+            maxAdds--;
+            const newRows = Array.from({ length: 3 }, () => Array.from({ length: cols }, () => {
+                const numbers = grid.flat().filter(n => n !== 0);
+                return numbers[Math.floor(Math.random() * numbers.length)] || 0;
+            }));
+            grid = [...grid, ...newRows];
+            renderGrid(grid);
+            updateAddRowsButton();
+            alertMessage.textContent = '';
+        }
+
+        function updateAddRowsButton() {
+            addRowsButton.textContent = `Adicionar Linhas (${maxAdds} restantes)`;
+        }
+
+        function checkHelp() {
+            clearHelpHighlights();
+            const hasPossibleMoves = checkForPossibleMoves();
+            if (!hasPossibleMoves) {
+                alertMessage.textContent = 'Não existem matchs possíveis';
+            }
+        }
+
+        function checkForPossibleMoves() {
+            for (let row1 = 0; row1 < rows; row1++) {
+                for (let col1 = 0; col1 < cols; col1++) {
+                    if (grid[row1][col1] !== 0) {
+                        for (let row2 = 0; row2 < rows; row2++) {
+                            for (let col2 = 0; col2 < cols; col2++) {
+                                if ((row1 !== row2 || col1 !== col2) && grid[row2][col2] !== 0) {
+                                    if (grid[row1][col1] === grid[row2][col2] || grid[row1][col1] + grid[row2][col2] === 10) {
+                                        if (isValidConnection(row1, col1, row2, col2)) {
+                                            highlightMatch(row1, col1, row2, col2);
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        function highlightMatch(row1, col1, row2, col2) {
+            const cell1 = document.querySelector(`[data-row="${row1}"][data-col="${col1}"]`);
+            const cell2 = document.querySelector(`[data-row="${row2}"][data-col="${col2}"]`);
+            cell1.classList.add('help-selected');
+            cell2.classList.add('help-selected');
+            alertMessage.textContent = '';
+        }
+
+        function clearHelpHighlights() {
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.remove('help-selected');
+            });
+            alertMessage.textContent = '';
+        }
+
+        function undoLastMove() {
+            if (undoStack.length > 0) {
+                const lastState = undoStack.pop();
+                grid[lastState.first.row][lastState.first.col] = lastState.first.value;
+                grid[lastState.second.row][lastState.second.col] = lastState.second.value;
+                renderGrid(grid);
+            }
+        }
+
+        function startNewGame() {
+            grid = generateGrid(rows, cols);
+            selectedCells = [];
+            maxAdds = 6;
+            updateAddRowsButton();
+            renderGrid(grid);
+            alertMessage.textContent = '';
+        }
+
+        addRowsButton.addEventListener('click', addRows);
+        helpButton.addEventListener('click', checkHelp);
+        undoButton.addEventListener('click', undoLastMove);
+        newGameButton.addEventListener('click', startNewGame);
+
+        window.onload = startNewGame;
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio de condiçao if</title>
+</head>
+<body>
+    <h1>Nacionalidade</h1>
+    Nacionalidade <input type ="text" name="txtnac" id="txtnac"> 
+    <input type="button" value="Verificar" onclick ="calcular()">
+    <div id="res"></div>
+        <script>
+            function calcular(){
+                var txtv = window.document.querySelector('input#txtnac');
+                var res = window.document.querySelector('div#res');
+                var nacionalidade=txtv.value;
+                res.innerHTML = `A sua Nacionalidade é  ${nacionalidade}. <br>`;
+                if (nacionalidade =="Portuguesa") {
+
+                    res.innerHTML += `Português`
+                }else{
+                    res.innerHTML += `Estrangeiro`
+}
+
+
+
+            }
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum de Informática e Programação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Fórum de Informática e Programação</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="topico1.html">Apresentação</a></li>
+                <li><a href="topico2.html">Dúvidas</a></li>
+                <li><a href="topico3.html">Partilhas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Bem-vindo ao nosso fórum!</h2>
+            <p>Participe das discussões sobre informática e programação. Escolha um tópico abaixo para começar.</p>
+        </section>
+        <section class="topics">
+            <article>
+                <h3><a href="topico1.html">Apresentação</a></h3>
+                <p>Apresente-se à comunidade! Conte-nos sobre sua experiência em informática e programação.</p>
+            </article>
+            <article>
+                <h3><a href="topico2.html">Dúvidas</a></h3>
+                <p>Tem alguma dúvida? Pergunte aqui e alguém poderá ajudar.</p>
+            </article>
+            <article>
+                <h3><a href="topico3.html">Partilhas</a></h3>
+                <p>Compartilhe projetos, ideias ou recursos que possam ser úteis para outros programadores.</p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Fórum de Informática e Programação</p>
+    </footer>
+    <script>
+    function showWelcomeNotification() {
+        const notification = document.createElement('div');
+        notification.textContent = 'Bem-vindo ao Fórum! Esperamos que aproveite sua experiência.';
+        notification.style.position = 'fixed';
+        notification.style.top = '10px';
+        notification.style.right = '10px';
+        notification.style.backgroundColor = '#333';
+        notification.style.color = '#fff';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = 1000;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => {
+                notification.remove();
+            }, 1000);
+        }, 5000);
+    }
+    window.onload = showWelcomeNotification;
+</script>
+
+</body>
+</html>

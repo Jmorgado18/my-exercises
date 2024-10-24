@@ -1,0 +1,16 @@
+const catalogo = ['Porto', 'Boavista' , 'Benfica' , 'Sporting' , 'Braga' , 'Vizela'];
+catalogo.sort((a, b) => a.localeCompare(b)); // ordena por ordem alfabetica
+console.log (catalogo);
+console.log (catalogo[0]);
+console.log (catalogo.length);
+console.log (catalogo[catalogo.length - 1]);
+let excluida =catalogo.pop();
+console.log (excluida);
+catalogo.push ('Arouca');
+console.log (catalogo);
+
+for (i=0; i<catalogo.length ; i++) {
+  
+  console.log (catalogo[i]);
+  
+}

@@ -1,0 +1,108 @@
+let player1 = Math.floor(Math.random() * 3);
+let player2 = Math.floor(Math.random() * 3);
+let poke1Health = 100;
+let poke2Health = 100;
+let poke1lvl= Math.floor(Math.random() * 20);
+let poke2lvl= Math.floor(Math.random() * 20);
+let poke2Defense = Math.floor(Math.random() * 3);
+let poke1Defense = Math.floor(Math.random() * 3);
+let poke1, poke2;
+//console.log (poke1lvl);
+//console.log(poke2lvl);
+// Tipo de pokemon para o player 1
+if (player1 === 1) {
+    poke1 = "fire";
+} else if (player1 === 2) {
+    poke1 = "grass";
+} else {
+    poke1 = "water";
+}
+
+// Tipo de pokemon para o player 2
+if (player2 === 1) {
+    poke2 = "fire";
+} else if (player2 === 2) {
+    poke2 = "grass";
+} else {
+    poke2 = "water";
+}
+
+console.log("Pokemon1 é do tipo " + poke1);
+console.log("Pokemon2 é do tipo " + poke2);
+
+//Enquanto ambos tiverem saúde <0 , o loop continua 
+
+while (poke2Health > 0 && poke1Health > 0) {
+    let Poke1Atack = ((Math.floor(Math.random() * 11)*poke1lvl)-poke2Defense);
+    let Poke2Atack = ((Math.floor(Math.random() * 11)*poke2lvl)-poke1Defense);
+    console.log("Pokemon 1 ataque poder "+Poke1Atack);
+    console.log("Pokemon 2 ataque poder "+Poke2Atack);
+    
+    
+    // Player1 attacks, caso o ataque seja 1 , morre
+    
+    if (Poke1Atack<=1){
+      
+    
+    poke1Health=0;
+    console.log("Poke1 Hits Itself! Poke1 Died");
+    break;
+    }
+    
+    if (poke1 === "fire" && poke2 === "grass") {
+        poke2Health -= 25 - Poke1Atack;
+        console.log("Super effective!");
+    } else if (poke1 === "water" && poke2 === "fire") {
+        poke2Health -= 25 - Poke1Atack;
+        console.log("Super effective!");
+    } else if (poke1 === "grass" && poke2 === "water") {
+        poke2Health -= 25 - Poke1Atack;
+        console.log("Super effective!");
+    } else {
+        poke2Health -= Poke1Atack;
+        console.log("Not so effective");
+    }
+
+      console.log ("Player 2 Health " + poke2Health)
+    // Verifica se o player 2 morre, antes de prosseguir a luta
+    if (poke2Health <= 0) {
+        console.log("Pokemon2 fainted!");
+        break;
+    }
+
+    // player2 attaca
+    
+    if (Poke2Atack>=1){
+      
+    
+    poke2Health=0;
+    console.log("Poke2 Hits Itself! Poke2 Died");
+    break;
+    }
+    if (poke2 === "fire" && poke1 === "grass") {
+        poke1Health -= 25 - Poke2Atack;
+        console.log("Super effective!");
+    } else if (poke2 === "water" && poke1 === "fire") {
+        poke1Health -= 25 - Poke2Atack;
+        console.log("Super effective!");
+    } else if (poke2 === "grass" && poke1 === "water") {
+        poke1Health -= 25 - Poke2Atack;
+        console.log("Super effective!");
+    } else {
+        poke1Health -= Poke2Atack;
+        console.log("Not so effective");
+    }
+    
+     
+        console.log ("Player 1 Health " + poke1Health)
+    // Verifica se o player 1 morreu
+    if (poke1Health <= 0) {
+        console.log("Pokemon1 fainted!");
+        break;
+    }
+
+
+    
+}
+    console.log(`Poke1 Health: ${poke1Health}`);
+    console.log (`Poke2 Health: ${poke2Health}`);

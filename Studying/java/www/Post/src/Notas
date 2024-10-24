@@ -1,0 +1,5 @@
+Explicação do código:
+
+POST: A diferença aqui é que enviamos dados ao servidor.
+setDoOutput(true): Permite o envio de dados na requisição.
+OutputStream: Envia os dados no formato JSON para o servidor.

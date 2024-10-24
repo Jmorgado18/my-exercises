@@ -1,0 +1,26 @@
+
+//Guardado numa string 
+const saveData = 'Ketchup-Ember-Fire';
+
+//Declarar objeto player 
+const player = {};
+
+console.log(player);
+
+
+//desmontando a string separando pelo - e guardando numa nova variável guardado como palavras
+let palavras = saveData.split("-");
+
+//console.log (palavras);
+
+//Atribuir os valores ao objeto
+player.nickname=palavras[0];
+
+//criar um novo objeto dentro do objeto player
+player.favCreature = {};
+
+//Atribuir os valores ao objeto
+player.favCreature.nickname=palavras[1];
+player.favCreature.type=palavras[2]
+
+console.log (player);

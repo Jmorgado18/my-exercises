@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Numbers</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px;
+            color: #4a90e2;
+            font-size: 3em;
+            font-weight: bold;
+        }
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(9, 60px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .cell {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cell.selected {
+            background-color: #dbe5ec;
+            transform: scale(1.1);
+        }
+        .button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #357abd;
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        #controls {
+            text-align: center;
+            margin: 20px;
+        }
+        #message {
+            text-align: center;
+            font-size: 20px;
+            color: #e94e77;
+            margin: 20px;
+        }
+        #rules {
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #rules h2 {
+            margin-top: 0;
+            color: #4a90e2;
+        }
+        #rules ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            font-size: 18px;
+        }
+        #footer {
+            margin-top: auto;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+            border-top: 5px solid #4a90e2;
+        }
+        #footer img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        #footer p {
+            margin: 10px 0 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Match Numbers</h1>
+    <div id="grid"></div>
+    <div id="controls">
+        <button id="addRowsButton" class="button">Adicionar Linhas (6 restantes)</button>
+        <button id="helpButton" class="button">Ajuda</button>
+        <button id="undoButton" class="button">Desfazer</button>
+        <button id="newGameButton" class="button">Novo Jogo</button>
+    </div>
+    <div id="message"></div>
+    <div id="rules">
+        <h2>Regras do Jogo</h2>
+        <ul>
+            <li>Os números podem ser conectados se a soma for 10 ou se forem iguais.</li>
+            <li>Os números devem estar em células adjacentes ou na mesma linha/coluna com espaços vazios entre eles.</li>
+            <li>O objetivo é limpar todas as células.</li>
+        </ul>
+    </div>
+    <div id="footer">
+        <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t39.30808-6/449789038_18445636837010251_3269526288574939169_n.jpg?stp=dst-jpegr&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vbqiy8KlQLEQ7kNvgFN_0jI&se=-1&_nc_ht=scontent.fopo2-2.fna&oh=00_AYAqRJtTbjkXaQpPjI4wDL_F5sTGR9Ddeb1-VGDKsZtSEg&oe=66D5063F" alt="Foto">
+        <p>Este jogo foi realizado para a minha batuzinha</p>
+    </div>
+
+    <script>
+        const rows = 3;
+        const cols = 9;
+        let grid = generateGrid(rows, cols);
+        let selectedCells = [];
+        let maxAdds = 6;
+        let undoStack = [];
+
+        const gridElement = document.getElementById('grid');
+        const addRowsButton = document.getElementById('addRowsButton');
+        const helpButton = document.getElementById('helpButton');
+        const undoButton = document.getElementById('undoButton');
+        const newGameButton = document.getElementById('newGameButton');
+        const alertMessage = document.getElementById('message');
+
+        function generateGrid(rows, cols) {
+            const grid = Array.from({ length: rows }, () => Array.from({ length: cols }, () => Math.floor(Math.random() * 9) + 1));
+            return grid;
+        }
+
+        function renderGrid(grid) {
+            gridElement.innerHTML = '';
+            grid.forEach((row, rowIndex) => {
+                row.forEach((cell, colIndex) => {
+                    const cellElement = document.createElement('div');
+                    cellElement.className = 'cell';
+                    cellElement.textContent = cell !== 0 ? cell : '';
+                    cellElement.dataset.row = rowIndex;
+                    cellElement.dataset.col = colIndex;
+                    cellElement.addEventListener('click', () => handleCellClick(cellElement));
+                    gridElement.appendChild(cellElement);
+                });
+            });
+        }
+
+        function handleCellClick(cellElement) {
+            const row = parseInt(cellElement.dataset.row);
+            const col = parseInt(cellElement.dataset.col);
+            const cellValue = grid[row][col];
+
+            if (selectedCells.length === 0) {
+                selectedCells.push({ row, col, value: cellValue, element: cellElement });
+                cellElement.classList.add('selected');
+            } else if (selectedCells.length === 1 && selectedCells[0].row !== row || selectedCells[0].col !== col) {
+                const [firstCell] = selectedCells;
+                if (firstCell.row === row && firstCell.col === col) return; // Same cell
+
+                if (cellValue === firstCell.value || (cellValue + firstCell.value === 10)) {
+                    if (isValidConnection(firstCell.row, firstCell.col, row, col)) {
+                        removeCells(firstCell, { row, col, element: cellElement });
+                    } else {
+                        shakeCells([firstCell.element, cellElement]);
+                    }
+                } else {
+                    shakeCells([firstCell.element, cellElement]);
+                }
+                selectedCells = [];
+            }
+        }
+
+        function shakeCells(cells) {
+            cells.forEach(cell => {
+                cell.classList.add('shake');
+                setTimeout(() => cell.classList.remove('shake'), 500);
+            });
+        }
+
+        function isValidConnection(row1, col1, row2, col2) {
+            if (row1 === row2) {
+                const minCol = Math.min(col1, col2);
+                const maxCol = Math.max(col1, col2);
+                for (let c = minCol + 1; c < maxCol; c++) {
+                    if (grid[row1][c] !== 0) return false;
+                }
+                return true;
+            } else if (col1 === col2) {
+                const minRow = Math.min(row1, row2);
+                const maxRow = Math.max(row1, row2);
+                for (let r = minRow + 1; r < maxRow; r++) {
+                    if (grid[r][col1] !== 0) return false;
+                }
+                return true;
+            } else if (Math.abs(row1 - row2) === Math.abs(col1 - col2)) { 
+                const rowStep = row2 > row1 ? 1 : -1;
+                const colStep = col2 > col1 ? 1 : -1;
+                let r = row1 + rowStep;
+                let c = col1 + colStep;
+                while (r !== row2 && c !== col2) {
+                    if (grid[r][c] !== 0) return false;
+                    r += rowStep;
+                    c += colStep;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function removeCells(firstCell, secondCell) {
+            undoStack.push({ first: { ...firstCell }, second: { ...secondCell } });
+            grid[firstCell.row][firstCell.col] = 0;
+            grid[secondCell.row][secondCell.col] = 0;
+            renderGrid(grid);
+            selectedCells = [];
+            if (checkWin()) {
+                alertMessage.textContent = 'Você venceu!';
+            }
+        }
+
+        function checkWin() {
+            return grid.flat().every(cell => cell === 0);
+        }
+
+        addRowsButton.addEventListener('click', () => {
+            if (maxAdds > 0) {
+                grid.unshift(...generateGrid(1, cols));
+                grid.pop();
+                renderGrid(grid);
+                maxAdds--;
+                addRowsButton.textContent = `Adicionar Linhas (${maxAdds} restantes)`;
+            }
+        });
+
+        helpButton.addEventListener('click', () => {
+            const hasMoves = checkForPossibleMoves();
+            if (!hasMoves) alertMessage.textContent = 'Sem movimentos disponíveis!';
+        });
+
+        undoButton.addEventListener('click', () => {
+            if (undoStack.length > 0) {
+                const { first, second } = undoStack.pop();
+                grid[first.row][first.col] = first.value;
+                grid[second.row][second.col] = second.value;
+                renderGrid(grid);
+                selectedCells = [];
+            }
+        });
+
+        newGameButton.addEventListener('click', () => {
+            grid = generateGrid(rows, cols);
+            renderGrid(grid);
+            selectedCells = [];
+            alertMessage.textContent = '';
+            maxAdds = 6;
+            addRowsButton.textContent = 'Adicionar Linhas (6 restantes)';
+            undoStack = [];
+        });
+
+        function checkForPossibleMoves() {
+            for (let row1 = 0; row1 < grid.length; row1++) {
+                for (let col1 = 0; col1 < grid[0].length; col1++) {
+                    for (let row2 = 0; row2 < grid.length; row2++) {
+                        for (let col2 = 0; col2 < grid[0].length; col2++) {
+                            if ((row1 !== row2 || col1 !== col2) &&
+                                (grid[row1][col1] === grid[row2][col2] || grid[row1][col1] + grid[row2][col2] === 10)) {
+                                if (isValidConnection(row1, col1, row2, col2)) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        renderGrid(grid);
+    </script>
+</body>
+</html>

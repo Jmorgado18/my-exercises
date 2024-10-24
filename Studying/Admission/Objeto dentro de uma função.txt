@@ -1,0 +1,16 @@
+function createProfile(name, age, hobbies) {
+   
+    return {
+        name: name,
+        age: age,
+        hobbies: hobbies
+    };
+}
+
+
+const person = createProfile('João', 33, ['gym', 'travel']);
+
+
+console.log(person.name);      // Output: Rita
+console.log(person.age);       // Output: 30
+console.log(person.hobbies);   // Output: ['coding', 'sleeping']

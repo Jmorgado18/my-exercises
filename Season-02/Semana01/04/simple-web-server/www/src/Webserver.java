@@ -1,49 +1,77 @@
-package src;
+import com.sun.net.httpserver.HttpServer;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpExchange;
 
-import com.sun.jdi.connect.spi.Connection;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.OutputStream;
+import java.io.File;
+import java.nio.file.Files;
+import java.net.InetSocketAddress;
 
-public class Webserver {
+public class SimpleWebServer {
 
     public static void main(String[] args) throws IOException {
+        // Cria o servidor na porta 8080
+        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
-        URL url = new URL("https://localhost:8080");
-        URLConnection connection = url.openConnection();
+        // Define o contexto para a raiz "/"
+        server.createContext("/", new RootHandler());
 
+        // Define o contexto para "/logo.png"
+        server.createContext("/logo.png", new LogoHandler());
 
-        int portNumber = 8080;
-        ServerSocket serverSocket = new ServerSocket(portNumber);
+        // Define o contexto para lidar com 404 (rotas não encontradas)
+        server.createContext("/404", new NotFoundHandler());
 
-        Socket clientSocket = serverSocket.accept();
-        System.out.println("Connecion on");
+        // Inicia o servidor
+        server.setExecutor(null); // Usa um executor default
+        server.start();
+        System.out.println("Servidor iniciado na porta 8080");
+    }
 
-        while (true) {
-            // Cria um PrintWriter para enviar mensagens ao cliente
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            // Cria um BufferedReader para ler mensagens enviadas pelo cliente
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
-            // Lê uma linha de mensagem enviada pelo cliente. Bloqueia a thread
-            String message = in.readLine();
-
-
-
-
-
-
-
-
-
+    // Handler para a página raiz "/"
+    static class RootHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            String response = "root page";
+            exchange.sendResponseHeaders(200, response.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
         }
+    }
 
+    // Handler para servir a imagem "logo.png"
+    static class LogoHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            File file = new File("logo.png"); // Caminho do arquivo logo.png
+            if (file.exists()) {
+                exchange.getResponseHeaders().set("Content-Type", "image/png");
+                byte[] bytes = Files.readAllBytes(file.toPath());
+                exchange.sendResponseHeaders(200, bytes.length);
+                OutputStream os = exchange.getResponseBody();
+                os.write(bytes);
+                os.close();
+            } else {
+                String response = "File not found";
+                exchange.sendResponseHeaders(404, response.length());
+                OutputStream os = exchange.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+            }
+        }
+    }
 
+    // Handler para 404 Not Found
+    static class NotFoundHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            String response = "<html><body><h1>404 - Page Not Found</h1></body></html>";
+            exchange.sendResponseHeaders(404, response.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        }
     }
 }

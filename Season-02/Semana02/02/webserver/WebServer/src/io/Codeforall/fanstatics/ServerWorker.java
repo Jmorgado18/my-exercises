@@ -10,11 +10,12 @@ import java.util.List;
 public class ServerWorker implements Runnable {
     private Socket clientSocket;
     private PrintWriter out;
-    private static List<PrintWriter> clientOutputs; // Referência compartilhada com o ChatServer
+    private static List<PrintWriter> clientOutputs;
+    private String name;
 
     public ServerWorker(Socket clientSocket, List<PrintWriter> clientOutputs) {
         this.clientSocket = clientSocket;
-        ServerWorker.clientOutputs = clientOutputs; // Inicializando a lista
+        ServerWorker.clientOutputs = clientOutputs;
     }
 
     @Override
@@ -22,6 +23,10 @@ public class ServerWorker implements Runnable {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            out.println("Digite o seu nome : ");
+            name=in.readLine();
+            out.println("Seja bem vindo " + name);
             
             synchronized (clientOutputs) {
                 clientOutputs.add(out);
@@ -29,8 +34,8 @@ public class ServerWorker implements Runnable {
             
             String message;
             while ((message = in.readLine()) != null) {
-                System.out.println("Mensagem recebida: " + message);
-                broadcast(message);
+                System.out.println(name +" : " +  message);
+                broadcast(name + " : " + message,out);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,11 +51,14 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    // Método para enviar a mensagem para todos os clientes conectados
-    private void broadcast(String message) {
+
+    private void broadcast(String message, PrintWriter senderOut) {
         synchronized (clientOutputs) {
+
             for (PrintWriter writer : clientOutputs) {
-                writer.println(message);
+                if(writer!=senderOut) {
+                    writer.println(message);
+                }
             }
         }
     }

@@ -19,7 +19,7 @@ public class WebServer {
         while(true){
         Socket clientSocket = serverSocket.accept();
         System.out.println("Connection established from " + clientSocket.getInetAddress());
-new Thread(new ServerWorker(clientSocket, clientOutputs)).start();
+        new Thread(new ServerWorker(clientSocket, clientOutput)).start();
 
       /*  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

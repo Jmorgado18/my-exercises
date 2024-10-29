@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
 
+
+
 public class ServerWorker implements Runnable {
     private Socket clientSocket;
     private PrintWriter out;
@@ -41,6 +43,11 @@ public class ServerWorker implements Runnable {
                     handleWhisper(message);
                 } else if (message.startsWith("/list")) {
                     listUsers();
+                } else if (message.startsWith("/changename")) {
+                    changename();
+                } else if (message.startsWith("/help")) {
+                    helpHandler();
+
                 } else {
                     broadcast(clientName + ": " + message, this);
                 }
@@ -58,6 +65,21 @@ public class ServerWorker implements Runnable {
                 System.err.println("Erro ao fechar o socket: " + e.getMessage());
             }
         }
+    }
+
+    private void helpHandler() {
+        out.println(" Digite /whisper para uma mensagem privada ");
+        out.println((" Digite /help para ajuda"));
+        out.println("Digite /changename para mudar o nome de utilizador");
+        out.println("Digite /list para listar todos os utilizadores presentes no chat");
+        out.println("Digite /quit para sair da sala de chat");
+    }
+
+    private void changename() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        out.println("Por favor, insira novo nome:");
+        clientName = in.readLine();
+        out.println(("Novo nome : " + clientName));
     }
 
     private void broadcast(String message, ServerWorker sender) {

@@ -10,12 +10,12 @@ import java.util.List;
 public class ServerWorker implements Runnable {
     private Socket clientSocket;
     private PrintWriter out;
-    private static List<ServerWorker> clients;
+    private List<ServerWorker> clients; // Alterado para não ser estático
     private String clientName;
 
     public ServerWorker(Socket clientSocket, List<ServerWorker> clients) {
         this.clientSocket = clientSocket;
-        ServerWorker.clients = clients;
+        this.clients = clients; // Atribuindo a lista de clientes corretamente
     }
 
     @Override
@@ -46,21 +46,19 @@ public class ServerWorker implements Runnable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Erro de I/O: " + e.getMessage());
         } finally {
-
-            synchronized (clients) {
-                clients.remove(this);
-                broadcast(clientName + " saiu do chat.", this); // Informa todos que o cliente saiu
-            }
             try {
-                clientSocket.close();
+                synchronized (clients) {
+                    clients.remove(this);
+                    broadcast(clientName + " saiu do chat.", this); // Informa todos que o cliente saiu
+                }
+                clientSocket.close(); // Fechar o socket ao sair
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Erro ao fechar o socket: " + e.getMessage());
             }
         }
     }
-
 
     private void broadcast(String message, ServerWorker sender) {
         synchronized (clients) {

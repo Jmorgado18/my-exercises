@@ -27,6 +27,7 @@ public class Producer implements Runnable {
     public synchronized void run() {
         while (elementNum > 0) {
             queue.offer(new Pizza());
+
             elementNum--;
         }
     }

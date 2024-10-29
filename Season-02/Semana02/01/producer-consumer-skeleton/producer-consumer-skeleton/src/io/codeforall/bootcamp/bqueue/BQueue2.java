@@ -20,6 +20,11 @@ public class BQueue2<T> {
             }
         }
         pizzasInQueue.add((Pizza) data);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("Produziu " + pizzasInQueue.size());
         System.out.println(data.toString());
         notifyAll();

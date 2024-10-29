@@ -5,49 +5,53 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
-import static jdk.incubator.vector.ByteVector.broadcast;
+import java.util.List;
 
 public class ServerWorker implements Runnable {
     private Socket clientSocket;
     private PrintWriter out;
+    private static List<PrintWriter> clientOutputs; // Referência compartilhada com o ChatServer
 
-    public void ServerWorker(Socket clientSocket) {
+    public ServerWorker(Socket clientSocket, List<PrintWriter> clientOutputs) {
         this.clientSocket = clientSocket;
+        ServerWorker.clientOutputs = clientOutputs; // Inicializando a lista
     }
-
-    public ServerWorker(Socket clientSocket) {
-        this.clientSocket = clientSocket;
-    }
-
 
     @Override
     public void run() {
-
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream(), true);
+            
             synchronized (clientOutputs) {
                 clientOutputs.add(out);
             }
+            
             String message;
             while ((message = in.readLine()) != null) {
-                System.out.println("Mensagem recebida :" + message);
+                System.out.println("Mensagem recebida: " + message);
                 broadcast(message);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            synchronized ((clientOutputs)) {
+            synchronized (clientOutputs) {
                 clientOutputs.remove(out);
             }
+            try {
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
+    // Método para enviar a mensagem para todos os clientes conectados
     private void broadcast(String message) {
-        for (PrintWriter writer : clientOutputs) {
-            writer.println(message);
+        synchronized (clientOutputs) {
+            for (PrintWriter writer : clientOutputs) {
+                writer.println(message);
+            }
         }
     }
 }

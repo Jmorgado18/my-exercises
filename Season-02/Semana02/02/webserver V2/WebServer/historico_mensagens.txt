@@ -1,0 +1,312 @@
+Joao: Ola
+Maria: Adeus
+Manel: Xau
+Joao: /help
+Joao: 
+Joao: 
+Joao: /help
+Manel: /help
+Joao: /help
+joao2: /help
+Joao: /detailedhelp
+Joao: /detailedHelp
+Joao: /changecolor package io.Codeforall.fanstatics;
+Joao: 
+Joao: import java.io.BufferedReader;
+Joao: import java.io.FileWriter;
+Joao: import java.io.IOException;
+Joao: import java.io.InputStreamReader;
+Joao: import java.io.PrintWriter;
+Joao: import java.net.Socket;
+Joao: import java.util.ArrayList;
+Joao: import java.util.HashSet;
+Joao: import java.util.List;
+Joao: import java.util.Set;
+Joao: 
+Joao: public class ServerWorker implements Runnable {
+Joao:     private Socket clientSocket;
+Joao:     private PrintWriter out;
+Joao:     private List<ServerWorker> clients;
+Joao:     private String clientName;
+Joao: 
+Joao:     // Lista de usuários silenciados
+Joao:     private final Set<String> mutedUsers = new HashSet<>();
+Joao: 
+Joao:     // Limite do histórico de mensagens
+Joao:     private static final int HISTORY_LIMIT = 50;
+Joao:     private static final List<String> messageHistory = new ArrayList<>();
+Joao:     private static final String HISTORY_FILE = "historico_mensagens.txt"; // Caminho do arquivo para o histórico
+Joao: 
+Joao:     // Status do usuário
+Joao:     private String status = "Disponível"; // Estado inicial
+Joao: 
+Joao:     public ServerWorker(Socket clientSocket, List<ServerWorker> clients) {
+Joao:         this.clientSocket = clientSocket;
+Joao:         this.clients = clients;
+Joao:     }
+Joao: 
+Joao:     @Override
+Joao:     public void run() {
+Joao:         try {
+Joao:             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+Joao:             out = new PrintWriter(clientSocket.getOutputStream(), true);
+Joao: 
+Joao:             // Solicita o nome do cliente
+Joao:             out.println("Por favor, insira seu nome:");
+Joao:             clientName = in.readLine();
+Joao:             while (isNameTaken(clientName)) {
+Joao:                 out.println("Nome já está em uso. Por favor, escolha outro nome:");
+Joao:                 clientName = in.readLine();
+Joao:             }
+Joao:             out.println("Bem-vindo, " + clientName + "! Você está conectado.");
+Joao: 
+Joao:             synchronized (clients) {
+Joao:                 clients.add(this);
+Joao:             }
+Joao: 
+Joao:             String message;
+Joao:             while ((message = in.readLine()) != null) {
+Joao:                 if (message.startsWith("/quit")) {
+Joao:                     break;
+Joao:                 } else if (message.startsWith("/whisper ")) {
+Joao:                     handleWhisper(message);
+Joao:                 } else if (message.startsWith("/list")) {
+Joao:                     listUsers();
+Joao:                 } else if (message.startsWith("/changename")) {
+Joao:                     changename();
+Joao:                 } else if (message.startsWith("/history")) {
+Joao:                     showHistory();
+Joao:                 } else if (message.startsWith("/mute ")) {
+Joao:                     handleMute(message);
+Joao:                 } else if (message.startsWith("/status ")) {
+Joao:                     handleStatus(message);
+Joao:                 } else if (message.startsWith("/typing")) {
+Joao:                     notifyTyping();
+Joao:                 } else if (message.startsWith("/help")) {
+Joao:                     detailedHelp(message);
+Joao:                 } else if (message.startsWith("/background ")) {
+Joao:                     handleBackgroundChange(message);
+Joao:                 } else {
+Joao:                     broadcast(clientName + ": " + message, this);
+Joao:                     addToHistory(clientName + ": " + message);  // Adiciona ao histórico
+Joao:                 }
+Joao:             }
+Joao:         } catch (IOException e) {
+Joao:             System.err.println("Erro de I/O: " + e.getMessage());
+Joao:         } finally {
+Joao:             try {
+Joao:                 synchronized (clients) {
+Joao:                     clients.remove(this);
+Joao:                     broadcast(clientName + " saiu do chat.", this);
+Joao:                 }
+Joao:                 clientSocket.close();
+Joao:             } catch (IOException e) {
+Joao:                 System.err.println("Erro ao fechar o socket: " + e.getMessage());
+Joao:             }
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void notifyTyping() {
+Joao:         broadcast(clientName + " está digitando...", this);
+Joao:     }
+Joao: 
+Joao:     private void handleStatus(String message) {
+Joao:         String[] tokens = message.split(" ", 2);
+Joao:         if (tokens.length < 2) {
+Joao:             out.println("Uso correto: /status <disponível/ausente/ocupado>");
+Joao:             return;
+Joao:         }
+Joao:         status = tokens[1].toLowerCase();
+Joao:         out.println("Seu status foi alterado para: " + status);
+Joao:     }
+Joao: 
+Joao:     private void detailedHelp(String message) {
+Joao:         String[] tokens = message.split(" ", 2);
+Joao:         
+Joao:         // Se nenhum comando for especificado, mostra todos os comandos
+Joao:         if (tokens.length < 2) {
+Joao:             out.println("Comandos disponíveis:");
+Joao:             out.println("/whisper <nome> <mensagem> - Envia uma mensagem privada para um usuário específico.");
+Joao:             out.println("/changename - Altera seu nome de usuário.");
+Joao:             out.println("/list - Lista todos os usuários conectados.");
+Joao:             out.println("/quit - Sai da sala de chat.");
+Joao:             out.println("/history - Mostra as últimas mensagens do chat.");
+Joao:             out.println("/mute <nome> - Silencia um usuário específico.");
+Joao:             out.println("/status <disponível/ausente/ocupado> - Define seu status.");
+Joao:             out.println("/typing - Indica que você está digitando.");
+Joao:             out.println("/background <cor_hexadecimal> - Altera a cor de fundo do chat.");
+Joao:             return;
+Joao:         }
+Joao: 
+Joao:         String command = tokens[1];
+Joao:         switch (command) {
+Joao:             case "whisper":
+Joao:                 out.println("/whisper <nome> <mensagem> - Envia uma mensagem privada para um usuário específico.");
+Joao:                 break;
+Joao:             case "changename":
+Joao:                 out.println("/changename - Altera seu nome de usuário.");
+Joao:                 break;
+Joao:             case "list":
+Joao:                 out.println("/list - Lista todos os usuários conectados.");
+Joao:                 break;
+Joao:             case "quit":
+Joao:                 out.println("/quit - Sai da sala de chat.");
+Joao:                 break;
+Joao:             case "history":
+Joao:                 out.println("/history - Mostra as últimas mensagens do chat.");
+Joao:                 break;
+Joao:             case "mute":
+Joao:                 out.println("/mute <nome> - Silencia um usuário específico.");
+Joao:                 break;
+Joao:             case "status":
+Joao:                 out.println("/status <disponível/ausente/ocupado> - Define seu status.");
+Joao:                 break;
+Joao:             case "background":
+Joao:                 out.println("/background <cor_hexadecimal> - Altera a cor de fundo do chat.");
+Joao:                 break;
+Joao:             default:
+Joao:                 out.println("Comando desconhecido. Use /help para ver os comandos disponíveis.");
+Joao:                 break;
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void handleBackgroundChange(String message) {
+Joao:         String[] tokens = message.split(" ", 2);
+Joao:         if (tokens.length < 2) {
+Joao:             out.println("Uso correto: /background <cor_hexadecimal>");
+Joao:             return;
+Joao:         }
+Joao: 
+Joao:         String color = tokens[1];
+Joao:         // Aqui você pode implementar a lógica para mudar o fundo, se estiver usando um sistema que suporte isso.
+Joao:         out.println("Cor de fundo alterada para: " + color);
+Joao:     }
+Joao: 
+Joao:     private void changename() throws IOException {
+Joao:         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+Joao:         out.println("Por favor, insira novo nome:");
+Joao:         String newName = in.readLine();
+Joao:         while (isNameTaken(newName)) {
+Joao:             out.println("Nome já está em uso. Por favor, escolha outro nome:");
+Joao:             newName = in.readLine();
+Joao:         }
+Joao:         out.println("Seu nome foi alterado para: " + newName);
+Joao:         broadcast(clientName + " mudou seu nome para " + newName, this);
+Joao:         clientName = newName;
+Joao:     }
+Joao: 
+Joao:     private boolean isNameTaken(String name) {
+Joao:         synchronized (clients) {
+Joao:             for (ServerWorker client : clients) {
+Joao:                 if (client.clientName.equalsIgnoreCase(name)) {
+Joao:                     return true; // Nome já está em uso
+Joao:                 }
+Joao:             }
+Joao:         }
+Joao:         return false; // Nome disponível
+Joao:     }
+Joao: 
+Joao:     private void broadcast(String message, ServerWorker sender) {
+Joao:         synchronized (clients) {
+Joao:             for (ServerWorker client : clients) {
+Joao:                 if (client != sender && !client.isMuted(sender.clientName)) {
+Joao:                     client.out.println(message);
+Joao:                 }
+Joao:             }
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void handleWhisper(String message) {
+Joao:         String[] tokens = message.split(" ", 3);
+Joao:         if (tokens.length < 3) {
+Joao:             out.println("Uso correto: /whisper <nome> <mensagem>");
+Joao:             return;
+Joao:         }
+Joao: 
+Joao:         String targetName = tokens[1];
+Joao:         String privateMessage = tokens[2];
+Joao:         ServerWorker targetClient = null;
+Joao: 
+Joao:         synchronized (clients) {
+Joao:             for (ServerWorker client : clients) {
+Joao:                 if (client.clientName.equals(targetName)) {
+Joao:                     targetClient = client;
+Joao:                     break;
+Joao:                 }
+Joao:             }
+Joao:         }
+Joao: 
+Joao:         if (targetClient != null) {
+Joao:             targetClient.out.println("[Whisper de " + clientName + "]: " + privateMessage);
+Joao:         } else {
+Joao:             out.println("Usuário " + targetName + " não encontrado.");
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void listUsers() {
+Joao:         out.println("Usuários conectados:");
+Joao:         synchronized (clients) {
+Joao:             for (ServerWorker client : clients) {
+Joao:                 out.println("- " + client.clientName + " (" + client.status + ")");
+Joao:             }
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void showHistory() {
+Joao:         out.println("Últimas mensagens no chat:");
+Joao:         synchronized (messageHistory) {
+Joao:             for (String pastMessage : messageHistory) {
+Joao:                 out.println(pastMessage);
+Joao:             }
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void addToHistory(String message) {
+Joao:         synchronized (messageHistory) {
+Joao:             if (messageHistory.size() >= HISTORY_LIMIT) {
+Joao:                 messageHistory.remove(0); // Remove a mensagem mais antiga se o limite for alcançado
+Joao:             }
+Joao:             messageHistory.add(message);
+Joao:         }
+Joao:         saveHistoryToFile(message); // Salva a mensagem no arquivo
+Joao:     }
+Joao: 
+Joao:     private void saveHistoryToFile(String message) {
+Joao:         try (FileWriter fw = new FileWriter(HISTORY_FILE, true); // Adiciona ao arquivo
+Joao:              PrintWriter outFile = new PrintWriter(fw)) {
+Joao:             outFile.println(message); // Escreve a mensagem no arquivo
+Joao:         } catch (IOException e) {
+Joao:             System.err.println("Erro ao salvar o histórico: " + e.getMessage());
+Joao:         }
+Joao:     }
+Joao: 
+Joao:     private void handleMute(String message) {
+Joao:         String[] tokens = message.split(" ", 2);
+Joao:         if (tokens.length < 2) {
+Joao:             out.println("Uso correto: /mute <nome>");
+Joao:             return;
+Joao:         }
+Joao: 
+Joao:         String userToMute = tokens[1];
+Joao:         mutedUsers.add(userToMute);
+Joao:         out.println("Você silenciou " + userToMute);
+Joao:     }
+Joao: 
+Joao:     private boolean isMuted(String userName) {
+Joao:         return mutedUsers.contains(userName);
+Joao:     }
+Joao: }
+Maria: /changecolor #ff5733
+Maria: 
+Maria: 
+Maria: 
+Joao: ola
+Joao: ola
+Joao: asas
+Joao: ola
+Joao: asas
+Joao: ssss
+Joao: ola
+Joao: asas
+Joao: ssss
+aaa: sss

@@ -10,7 +10,7 @@ import java.util.List;
 public class ServerWorker implements Runnable {
     private Socket clientSocket;
     private PrintWriter out;
-    private static List<ServerWorker> clients; // Lista de clientes conectados
+    private static List<ServerWorker> clients;
     private String clientName;
 
     public ServerWorker(Socket clientSocket, List<ServerWorker> clients) {
@@ -30,13 +30,13 @@ public class ServerWorker implements Runnable {
             out.println("Bem-vindo, " + clientName + "! Você está conectado.");
 
             synchronized (clients) {
-                clients.add(this); // Adiciona o cliente à lista de clientes
+                clients.add(this);
             }
 
             String message;
             while ((message = in.readLine()) != null) {
                 if (message.startsWith("/quit")) {
-                    break; // Sai do loop e encerra a conexão
+                    break;
                 } else if (message.startsWith("/whisper ")) {
                     handleWhisper(message);
                 } else if (message.startsWith("/list")) {
@@ -48,7 +48,7 @@ public class ServerWorker implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            // Remove o cliente ao desconectar
+
             synchronized (clients) {
                 clients.remove(this);
                 broadcast(clientName + " saiu do chat.", this); // Informa todos que o cliente saiu
@@ -61,7 +61,7 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    // Método para enviar uma mensagem para todos os outros clientes, exceto o remetente
+
     private void broadcast(String message, ServerWorker sender) {
         synchronized (clients) {
             for (ServerWorker client : clients) {

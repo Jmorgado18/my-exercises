@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebServer {
-    private static final List<PrintWriter> clientOutput= new ArrayList<>();
+    private static final List<ServerWorker> clients= new ArrayList<>();
     private static final int port = 8085;
     public static void main(String[] args) throws IOException {
 
@@ -19,7 +19,8 @@ public class WebServer {
         while(true){
         Socket clientSocket = serverSocket.accept();
         System.out.println("Connection established from " + clientSocket.getInetAddress());
-        new Thread(new ServerWorker(clientSocket, clientOutput)).start();
+        new Thread(new ServerWorker(clientSocket, clients));
+        new Thread(worker).start();
 
       /*  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

@@ -68,11 +68,11 @@ public class ServerWorker implements Runnable {
     }
 
     private void helpHandler() {
-        out.println(" Digite /whisper para uma mensagem privada ");
-        out.println((" Digite /help para ajuda"));
-        out.println("Digite /changename para mudar o nome de utilizador");
-        out.println("Digite /list para listar todos os utilizadores presentes no chat");
-        out.println("Digite /quit para sair da sala de chat");
+        out.println(" - Digite /whisper para uma mensagem privada ");
+        out.println((" - Digite /help para ajuda"));
+        out.println(" - Digite /changename para mudar o nome de utilizador");
+        out.println(" - Digite /list para listar todos os utilizadores presentes no chat");
+        out.println(" - Digite /quit para sair da sala de chat");
     }
 
     private void changename() throws IOException {

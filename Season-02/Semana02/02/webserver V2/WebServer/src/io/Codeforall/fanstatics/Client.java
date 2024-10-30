@@ -11,8 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class Client {
 
     public static void main(String[] args) {
-        String host = "localhost";
-        int port = 8085;
+        String host = "192.168.2.48";
+        int port = 50000;
         AtomicReference<String> colorCode = new AtomicReference<>("\u001B[0m");
 
         try (Socket socket = new Socket(host, port);
@@ -22,7 +22,7 @@ public class Client {
 
             System.out.println(in.readLine());
 
-            System.out.print("Digite o seu nome: ");
+            System.out.print("Digite o s eu nome: ");
             String nome = scanner.nextLine();
             out.println(nome);
 

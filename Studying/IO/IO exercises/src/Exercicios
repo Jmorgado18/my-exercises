@@ -1,0 +1,36 @@
+Exercícios de Leitura e Escrita de Bytes
+
+
+1- Leitura de Bytes de um Arquivo
+Escreva um programa que leia os bytes de um arquivo .txt e os exiba no console. Utilize FileInputStream.
+
+2 - Escrita de Bytes em um Arquivo
+Escreva um programa que receba uma string do usuário, converta-a em bytes e grave-a num arquivo .txt. Use FileOutputStream.
+
+3-Copiar Conteúdo de um Arquivo Byte a Byte
+Crie um programa que copie o conteúdo de um arquivo para outro, lendo e escrevendo byte a byte. Use FileInputStream e FileOutputStream.
+
+4- Contar Bytes em um Arquivo
+Escreva um programa que conte o número total de bytes num arquivo e exiba o resultado. Experimente com arquivos de texto e binários.
+
+5 - Manipulação de Imagens com Bytes
+Escreva um programa que copie uma imagem (ex: .jpg) de uma pasta para outra. Use FileInputStream e FileOutputStream, e garanta que a imagem seja copiada corretamente.
+
+
+Exercícios de Leitura e Escrita de Caracteres
+
+
+6- Leitura de Caracteres de um Arquivo
+Crie um programa que leia o conteúdo de um arquivo .txt usando FileReader e exiba o texto no console, caractere a caractere.
+
+7 - Escrita de Caracteres em um Arquivo
+Escreva um programa que peça uma frase ao utilizador e grave-a num arquivo .txt usando FileWriter.
+
+8 - Leitura e Escrita de Caracteres com BufferedReader e BufferedWriter
+Escreva um programa que copie o conteúdo de um arquivo .txt para outro, linha por linha, usando BufferedReader e BufferedWriter para melhorar a eficiência.
+
+9 - Contagem de Linhas e Palavras num Arquivo
+Crie um programa que leia um arquivo .txt e conte quantas linhas e palavras ele contém. Use BufferedReader para ler o arquivo linha a linha e divida cada linha em palavras.
+
+10 - Cifrar Texto e Gravar num Arquivo
+Escreva um programa que leia um arquivo de texto, aplique uma cifra simples (ex: rot13, que desloca cada letra 13 posições), e grave o texto cifrado num novo arquivo. Ao ler novamente o arquivo cifrado, o programa deve decifrá-lo e exibir o texto original.

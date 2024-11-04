@@ -1,0 +1,4 @@
+Java é uma linguagem de programação popular.
+Ela é amplamente utilizada no desenvolvimento de aplicações.
+A programação funcional tem ganhado popularidade recentemente.
+Lambda expressions são uma característica poderosa do Java.

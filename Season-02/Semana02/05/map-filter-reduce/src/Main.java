@@ -1,6 +1,4 @@
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,17 +8,14 @@ public class Main {
         /*
         Dividir a string em palavras
         Remover a palavra garbage
-        coverter para maiusculas
-        Juntas as palavras para uma unica string
-         */
+        Converter para maiúsculas
+        Juntar as palavras em uma única string
+        */
 
-        String result = String.valueOf(Arrays.stream(message.split(" "))
-
-                .filter(word -> !word.equals("garbage"))
-                .unordered()
-                .parallel()
-                .map(String::toUpperCase)
-                .reduce((acc, word) -> acc + " " + word));
+        String result = Arrays.stream(message.split(" ")) // Dividir a string em palavras
+                .filter(word -> !word.equalsIgnoreCase("garbage")) // Remover "garbage"
+                .map(String::toUpperCase) // Converter para maiúsculas
+                .reduce("", (acc, word) -> acc.isEmpty() ? word : acc + " " + word); // Juntar as palavras com espaço
 
         System.out.println(result);
     }

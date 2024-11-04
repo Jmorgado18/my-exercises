@@ -1,0 +1,4 @@
+A programação é uma arte.
+Java oferece várias ferramentas para programação funcional.
+Lambda é uma palavra chave em programação.
+Muitas pessoas adoram aprender novas linguagens de programação.

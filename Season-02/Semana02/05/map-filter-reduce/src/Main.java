@@ -7,12 +7,20 @@ public class Main {
         String message = "I'll send an SOS to the garbage world, " +
                 "I hope that someone garbage gets my message in a garbage bottle.";
 
-        // Quebrar a mensagem em palavras e transformar conforme solicitado
-        String result = Arrays.stream(message.split(" "))    // Divide a string em palavras
-                .filter(word -> !word.equals("garbage"))     // Remove a palavra "garbage"
-                .map(String::toUpperCase)                   // Converte para maiúsculas
-                .reduce((acc, word) -> acc + " " + word)    // Junta as palavras em uma única string
-                .orElse("");                                // Retorna string vazia se não houver palavras
+        /*
+        Dividir a string em palavras
+        Remover a palavra garbage
+        coverter para maiusculas
+        Juntas as palavras para uma unica string
+         */
+
+        String result = String.valueOf(Arrays.stream(message.split(" "))
+
+                .filter(word -> !word.equals("garbage"))
+                .unordered()
+                .parallel()
+                .map(String::toUpperCase)
+                .reduce((acc, word) -> acc + " " + word));
 
         System.out.println(result);
     }

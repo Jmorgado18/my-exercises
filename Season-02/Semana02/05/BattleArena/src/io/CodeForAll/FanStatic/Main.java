@@ -6,3 +6,6 @@ public class Main {
         arena.startBattle();
     }
 }
+
+
+//Bug nas abilities , rever métodos

@@ -5,3 +5,4 @@ public class Warrior extends Hero {
         super("Warrior", 100, 25, 10, new ShieldBlock(20, 3));
     }
 }
+

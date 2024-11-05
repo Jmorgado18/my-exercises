@@ -10,8 +10,8 @@ public class SneakAttack extends AbstractAbility {
 
     @Override
     public void apply(Hero user, Hero target) {
-        target.hp -= sneakDamage;  // Causa dano ao alvo
-        currentCooldown = cooldown;  // Define cooldown após o uso
+        target.hp -= sneakDamage;
+        currentCooldown = cooldown;
         System.out.println(user.name + " deals " + sneakDamage + " sneak damage to " + target.name + "!");
     }
 }

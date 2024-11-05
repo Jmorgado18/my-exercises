@@ -10,8 +10,8 @@ public class Heal extends AbstractAbility {
 
     @Override
     public void apply(Hero user, Hero target) {
-        user.hp += healAmount;  // Cura-se a si proprio
-        currentCooldown = cooldown;  // Define cooldown após o uso
+        user.hp += healAmount;
+        currentCooldown = cooldown;
         System.out.println(user.name + " heals himself for " + healAmount + " HP.");
     }
 }

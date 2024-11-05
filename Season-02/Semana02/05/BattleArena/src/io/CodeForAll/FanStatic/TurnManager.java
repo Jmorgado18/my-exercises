@@ -5,10 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-
-// Herois mortos continuam a ser atacados e a atacar !
-// Herois com mana suficiente e que nao estão em cooldown não estão a usar a ability .
-// Logica do metodo StartTurn a revisar
 public class TurnManager {
     private List<Hero> heroes;
     private Random random;
@@ -19,54 +15,36 @@ public class TurnManager {
     }
 
     public void startTurn() {
-        // Embaralha a lista de heróis para definir uma ordem de turno aleatória
         Collections.shuffle(heroes);
 
-        // Cada herói realiza uma ação no seu turno
         for (Hero attacker : heroes) {
+            if (attacker.hp <= 0) continue;
 
-
-            if(attacker.hp<=0) continue;
             Hero target = selectRandomTarget(attacker);
-            if(target.hp<=0)continue;
+            if (target.hp <= 0) continue;
 
-            if((attacker.mana>=attacker.ability.getManaCost()) && attacker.ability.isAvailable()){
-                System.out.println(attacker.name + " uses ability on " + target.name + "!");
-                attacker.useAbility(target);
-                attacker.mana-=attacker.ability.getManaCost();
-                attacker.ability.reduceCooldown();
-
-            }
-            System.out.println(attacker.name + " atacks " + target.name);
-            attacker.attack(target);
+            performAbility(attacker, target);
+            performAttack(attacker, target);
             displayStatus();
-
-/*
-            if ((attacker.hp <= 0 )&& (target.hp<0)) continue;  // Ignora heróis que foram derrotados
-
-
-
-            // Usar habilidade se a mana for suficiente e a habilidade estiver disponível
-            if ((attacker.mana >= attacker.ability.getManaCost()) && (attacker.ability.isAvailable())) {
-                System.out.println(attacker.name + " uses ability on " + target.name + "!");
-                attacker.useAbility(target);
-
-                // Reduz o cooldown da habilidade após o turno
-                attacker.ability.reduceCooldown();
-            }
-
-            System.out.println(attacker.name + " attacks " + target.name + "!");
-            attacker.attack(target);
-
-
-
- */
         }
+    }
+
+    private void performAbility(Hero attacker, Hero target) {
+        if (attacker.mana >= attacker.ability.getManaCost() && attacker.ability.isAvailable()) {
+            System.out.println(attacker.name + " uses ability on " + target.name + "!");
+            attacker.useAbility(target);
+            attacker.ability.reduceCooldown();
+        }
+    }
+
+    private void performAttack(Hero attacker, Hero target) {
+        System.out.println(attacker.name + " attacks " + target.name);
+        attacker.attack(target);
     }
 
     private Hero selectRandomTarget(Hero attacker) {
         List<Hero> possibleTargets = new ArrayList<>(heroes);
-        possibleTargets.remove(attacker);  // Evita que o herói ataque a si mesmo
+        possibleTargets.remove(attacker);
         return possibleTargets.get(random.nextInt(possibleTargets.size()));
     }
 
@@ -80,7 +58,7 @@ public class TurnManager {
 
     public boolean checkVictory() {
         int aliveHeroes = (int) heroes.stream().filter(hero -> hero.hp > 0).count();
-        return aliveHeroes <= 1;  // Condição de vitória: apenas um herói restante
+        return aliveHeroes <= 1;
     }
 
     public Hero getWinner() {

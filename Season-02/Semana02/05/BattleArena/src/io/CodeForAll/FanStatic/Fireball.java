@@ -10,8 +10,8 @@ public class Fireball extends AbstractAbility {
 
     @Override
     public void apply(Hero user, Hero target) {
-        user.attackPower += attackBoost;  // Aumenta o poder de ataque do usuário
-        currentCooldown = cooldown;  // Define cooldown após o uso
+        user.attackPower += attackBoost;
+        currentCooldown = cooldown;
         System.out.println(user.name + " increases attack power by " + attackBoost + "!");
     }
 }

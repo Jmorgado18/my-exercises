@@ -7,8 +7,9 @@ public class ShieldBlock extends AbstractAbility {
 
     @Override
     public void apply(Hero user, Hero target) {
-        // Lógica para bloquear ataque (pode ser uma implementação específica)
-        currentCooldown = cooldown;  // Define cooldown após o uso
+
+        currentCooldown = cooldown;
+        user.isShield=true;
         System.out.println(user.name + " prepares to block the next attack!");
     }
 }

@@ -12,7 +12,7 @@ public class ParallelPerfectNumbers {
     }
 
     public static void main(String[] args) {
-        int limit = 4;
+        int limit = 6;
 
         Stream<Integer> perfectNumbers = Stream.iterate(1, n -> n + 1)
                 .parallel() // Torna a stream paralela

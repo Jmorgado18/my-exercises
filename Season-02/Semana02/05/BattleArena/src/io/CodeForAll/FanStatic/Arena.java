@@ -15,8 +15,9 @@ public class Arena {
     }
 
     public void startBattle() {
-        TurnManager turnManager = new TurnManager(heroes);
 
+        TurnManager turnManager = new TurnManager(heroes);
+        turnManager.displayStatus();
         while (!turnManager.checkVictory()) {
             turnManager.startTurn();
         }

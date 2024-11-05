@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+
+// Herois mortos continuam a ser atacados e a atacar !
+// Herois com mana suficiente e que nao estão em cooldown não estão a usar a ability .
+// Logica do metodo StartTurn a revisar
 public class TurnManager {
     private List<Hero> heroes;
     private Random random;
@@ -20,20 +24,25 @@ public class TurnManager {
 
         // Cada herói realiza uma ação no seu turno
         for (Hero attacker : heroes) {
-            if (attacker.hp <= 0) continue;  // Ignora heróis que foram derrotados
 
             Hero target = selectRandomTarget(attacker);
+
+            if ((attacker.hp <= 0 )&& (target.hp<0)) continue;  // Ignora heróis que foram derrotados
+
+
+
+            // Usar habilidade se a mana for suficiente e a habilidade estiver disponível
+            if ((attacker.mana >= attacker.ability.getManaCost()) && (attacker.ability.isAvailable())) {
+                System.out.println(attacker.name + " uses ability on " + target.name + "!");
+                attacker.useAbility(target);
+
+                // Reduz o cooldown da habilidade após o turno
+                attacker.ability.reduceCooldown();
+            }
+
             System.out.println(attacker.name + " attacks " + target.name + "!");
             attacker.attack(target);
 
-            // Usar habilidade se a mana for suficiente e a habilidade estiver disponível
-            if (attacker.mana >= attacker.ability.getManaCost() && attacker.ability.isAvailable()) {
-                System.out.println(attacker.name + " uses ability on " + target.name + "!");
-                attacker.useAbility(target);
-            }
-
-            // Reduz o cooldown da habilidade após o turno
-            attacker.ability.reduceCooldown();
             displayStatus();
         }
     }
@@ -44,7 +53,7 @@ public class TurnManager {
         return possibleTargets.get(random.nextInt(possibleTargets.size()));
     }
 
-    private void displayStatus() {
+    public void displayStatus() {
         System.out.println("\n--- Status of Heroes ---");
         for (Hero hero : heroes) {
             System.out.println(hero.name + " - HP: " + hero.hp + ", Mana: " + hero.mana);

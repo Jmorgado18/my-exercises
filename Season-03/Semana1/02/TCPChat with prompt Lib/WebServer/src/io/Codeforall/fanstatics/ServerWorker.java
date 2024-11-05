@@ -1,10 +1,9 @@
 package io.Codeforall.fanstatics;
 
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -39,16 +38,21 @@ public class ServerWorker implements Runnable {
     @Override
     public void run() {
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            // Criando o prompt para ler entradas
+            Prompt prompt = new Prompt(System.in, System.out);
+
             out = new PrintWriter(clientSocket.getOutputStream(), true);
 
-            // Solicita o nome do cliente
-            out.println("Por favor, insira seu nome:");
-            clientName = in.readLine();
+            // Solicita o nome do cliente com o Prompt
+            StringInputScanner askName = new StringInputScanner();
+            askName.setMessage("Por favor, insira seu nome:");
+            clientName = prompt.getUserInput(askName);
+
             while (isNameTaken(clientName)) {
                 out.println("Nome já está em uso. Por favor, escolha outro nome:");
-                clientName = in.readLine();
+                clientName = prompt.getUserInput(askName);  // Usando o Prompt para solicitar o nome novamente
             }
+
             out.println("Bem-vindo, " + clientName + "! Você está conectado.");
 
             synchronized (clients) {
@@ -56,7 +60,8 @@ public class ServerWorker implements Runnable {
             }
 
             String message;
-            while ((message = in.readLine()) != null) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            while ((message = reader.readLine()) != null) {
                 if (message.startsWith("/quit")) {
                     break;
                 } else if (message.startsWith("/whisper ")) {
@@ -64,21 +69,13 @@ public class ServerWorker implements Runnable {
                 } else if (message.startsWith("/list")) {
                     listUsers();
                 } else if (message.startsWith("/changename")) {
-                    changename();
+                    changename(prompt);  // Passa o prompt para alterar o nome
                 } else if (message.startsWith("/history")) {
                     showHistory();
                 } else if (message.startsWith("/mute ")) {
                     handleMute(message);
                 } else if (message.startsWith("/status ")) {
-                    handleStatus(message);
-                } else if (message.startsWith("/typing")) {
-                    notifyTyping();
-                } else if (message.startsWith("/help")) {
-                    detailedHelp(message);
-                } else if (message.startsWith("/background ")) {
-                    handleBackgroundChange(message);
-                } else if (message.startsWith("/color ")) {
-                    changeColor(message);
+                    handleStatus(message, prompt);  // Passa o prompt para alterar o status
                 } else {
                     broadcast(clientName + " (" + textColor + "): " + message, this);
                     addToHistory(clientName + ": " + message);  // Adiciona ao histórico
@@ -99,11 +96,8 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    private void notifyTyping() {
-        broadcast(clientName + " está digitando...", this);
-    }
-
-    private void handleStatus(String message) {
+    // Alterando o status do usuário com o Prompt
+    private void handleStatus(String message, Prompt prompt) {
         String[] tokens = message.split(" ", 2);
         if (tokens.length < 2) {
             out.println("Uso correto: /status <disponível/ausente/ocupado>");
@@ -113,91 +107,15 @@ public class ServerWorker implements Runnable {
         out.println("Seu status foi alterado para: " + status);
     }
 
-    private void changeColor(String message) {
-        String[] tokens = message.split(" ", 2);
-        if (tokens.length < 2) {
-            out.println("Uso correto: /color <cor>");
-            return;
-        }
+    // Mudando o nome do usuário com o Prompt
+    private void changename(Prompt prompt) {
+        StringInputScanner askNewName = new StringInputScanner();
+        askNewName.setMessage("Por favor, insira novo nome:");
+        String newName = prompt.getUserInput(askNewName);
 
-        String newColor = tokens[1].toLowerCase();
-        textColor = newColor; // Atualiza a cor do texto
-        out.println("A cor do seu texto foi alterada para: " + textColor);
-    }
-
-    private void detailedHelp(String message) {
-        String[] tokens = message.split(" ", 2);
-
-        // Se nenhum comando for especificado, mostra todos os comandos
-        if (tokens.length < 2) {
-            out.println("Comandos disponíveis:");
-            out.println("/whisper <nome> <mensagem> - Envia uma mensagem privada para um usuário específico.");
-            out.println("/changename - Altera seu nome de usuário.");
-            out.println("/list - Lista todos os usuários conectados.");
-            out.println("/quit - Sai da sala de chat.");
-            out.println("/history - Mostra as últimas mensagens do chat.");
-            out.println("/mute <nome> - Silencia um usuário específico.");
-            out.println("/status <disponível/ausente/ocupado> - Define seu status.");
-            out.println("/typing - Indica que você está digitando.");
-            out.println("/background <cor_hexadecimal> - Altera a cor de fundo do chat.");
-            out.println("/color <cor> - Altera a cor do seu texto.");
-            return;
-        }
-
-        String command = tokens[1];
-        switch (command) {
-            case "whisper":
-                out.println("/whisper <nome> <mensagem> - Envia uma mensagem privada para um usuário específico.");
-                break;
-            case "changename":
-                out.println("/changename - Altera seu nome de usuário.");
-                break;
-            case "list":
-                out.println("/list - Lista todos os usuários conectados.");
-                break;
-            case "quit":
-                out.println("/quit - Sai da sala de chat.");
-                break;
-            case "history":
-                out.println("/history - Mostra as últimas mensagens do chat.");
-                break;
-            case "mute":
-                out.println("/mute <nome> - Silencia um usuário específico.");
-                break;
-            case "status":
-                out.println("/status <disponível/ausente/ocupado> - Define seu status.");
-                break;
-            case "background":
-                out.println("/background <cor_hexadecimal> - Altera a cor de fundo do chat.");
-                break;
-            case "color":
-                out.println("/color <cor> - Altera a cor do seu texto.");
-                break;
-            default:
-                out.println("Comando desconhecido. Use /help para ver os comandos disponíveis.");
-                break;
-        }
-    }
-
-    private void handleBackgroundChange(String message) {
-        String[] tokens = message.split(" ", 2);
-        if (tokens.length < 2) {
-            out.println("Uso correto: /background <cor_hexadecimal>");
-            return;
-        }
-
-        String color = tokens[1];
-        // Aqui você pode implementar a lógica para mudar o fundo, se estiver usando um sistema que suporte isso.
-        out.println("Cor de fundo alterada para: " + color);
-    }
-
-    private void changename() throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        out.println("Por favor, insira novo nome:");
-        String newName = in.readLine();
         while (isNameTaken(newName)) {
             out.println("Nome já está em uso. Por favor, escolha outro nome:");
-            newName = in.readLine();
+            newName = prompt.getUserInput(askNewName);  // Usando o Prompt para solicitar o nome novamente
         }
         out.println("Seu nome foi alterado para: " + newName);
         broadcast(clientName + " mudou seu nome para " + newName, this);

@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
+import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 
 public class Client3 {
 
@@ -17,14 +18,16 @@ public class Client3 {
 
         try (Socket socket = new Socket(host, port);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             Scanner scanner = new Scanner(System.in)) {
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+            // Criando o Prompt e o scanner para capturar o nome do usuário
+            Prompt prompt = new Prompt(System.in, System.out);
+            StringInputScanner askName = new StringInputScanner();
+            askName.setMessage("Digite o seu nome: ");
+            String nome = prompt.getUserInput(askName);
+            out.println(nome);
 
             System.out.println(in.readLine());
-
-            System.out.print("Digite o seu nome: ");
-            String nome = scanner.nextLine();
-            out.println(nome);
 
             Thread receiver = new Thread(() -> {
                 try {
@@ -44,7 +47,11 @@ public class Client3 {
 
             String message;
             while (true) {
-                message = scanner.nextLine();
+                // Usando o prompt para capturar as mensagens do usuário
+                StringInputScanner askMessage = new StringInputScanner();
+                askMessage.setMessage("Digite sua mensagem: ");
+                message = prompt.getUserInput(askMessage);
+
                 out.println(message);
 
                 if (message.equalsIgnoreCase("/quit")) {

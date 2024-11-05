@@ -25,8 +25,23 @@ public class TurnManager {
         // Cada herói realiza uma ação no seu turno
         for (Hero attacker : heroes) {
 
-            Hero target = selectRandomTarget(attacker);
 
+            if(attacker.hp<=0) continue;
+            Hero target = selectRandomTarget(attacker);
+            if(target.hp<=0)continue;
+
+            if((attacker.mana>=attacker.ability.getManaCost()) && attacker.ability.isAvailable()){
+                System.out.println(attacker.name + " uses ability on " + target.name + "!");
+                attacker.useAbility(target);
+                attacker.mana-=attacker.ability.getManaCost();
+                attacker.ability.reduceCooldown();
+
+            }
+            System.out.println(attacker.name + " atacks " + target.name);
+            attacker.attack(target);
+            displayStatus();
+
+/*
             if ((attacker.hp <= 0 )&& (target.hp<0)) continue;  // Ignora heróis que foram derrotados
 
 
@@ -43,7 +58,9 @@ public class TurnManager {
             System.out.println(attacker.name + " attacks " + target.name + "!");
             attacker.attack(target);
 
-            displayStatus();
+
+
+ */
         }
     }
 

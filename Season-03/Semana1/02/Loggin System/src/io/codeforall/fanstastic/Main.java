@@ -10,20 +10,38 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+/*
+Melhorias a implementar :
+
+
+    -Incriptação e desincriptação nas passwords;
+    -Se name = Admin -> acesso às passwords desincriptadas (just for fun)- Non Sense;
+    -Validação da password com Regex;
+    -Validar Registo - Se user já existir, ask another name;
+
+ */
+
+
 public class Main {
     public static void main(String[] args) {
 
+        EnterMenu();
+    }
+
+    private static void EnterMenu(){
         Prompt prompt = new Prompt(System.in, System.out);
         String[] options = {"Login", "Register"};
 
-        // Menu para o usuário escolher entre Login ou Registro
+
         MenuInputScanner scanner = new MenuInputScanner(options);
         scanner.setMessage("Choose an option: ");
+        scanner.setError("That is not a valid option.");
         int answerIndex = prompt.getUserInput(scanner);
 
-        if (answerIndex == 1) { // Login
+        if (answerIndex == 1) {
             login(prompt);
-        } else { // Register
+        } else {
             register(prompt);
         }
     }
@@ -61,9 +79,9 @@ public class Main {
                     "one lowercase letter, one digit, and one special character): \n");
             password = prompt.getUserInput(askPassword);
 
-            // Validar a senha
+
             if (isPasswordValid(password)) {
-                break; // Sair do loop se a senha for válida
+                break;
             } else {
                 System.out.println("Password does not meet the requirements. Please try again.");
             }
@@ -74,7 +92,7 @@ public class Main {
     }
 
     private static boolean isPasswordValid(String password) {
-        // Definir os critérios de validação
+
         boolean hasUpperCase = false;
         boolean hasLowerCase = false;
         boolean hasDigit = false;

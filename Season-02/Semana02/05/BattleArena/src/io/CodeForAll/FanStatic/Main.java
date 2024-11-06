@@ -8,4 +8,3 @@ public class Main {
 }
 
 
-//Bug nas abilities , rever métodos

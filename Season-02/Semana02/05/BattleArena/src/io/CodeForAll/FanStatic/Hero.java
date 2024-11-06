@@ -20,10 +20,10 @@ public abstract class Hero {
 
     public void attack(Hero target) {
 
-        if (target.isShield) {
-            System.out.println(target.name + " has a Shield, no damage has taken");
-            target.isShield = false;
-        }else{
+       // if (target.isShield) {
+       //     System.out.println(target.name + " has a Shield, no damage has taken");
+       //     target.isShield = false;
+      //  }else{
 
         int damage = Math.max(0, this.attackPower - target.defensePower);
         target.hp -= damage;
@@ -32,7 +32,7 @@ public abstract class Hero {
 
         this.mana += 10;
     }
-    }
+
 
     public void useAbility(Hero target) {
         if (canUseAbility()) {

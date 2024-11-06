@@ -14,8 +14,9 @@ public class TurnManager {
         this.random = new Random();
     }
 
-       //Problema de lógica no uso do Shield. Warrior usa o shield quando ataca e não quando é atacado
-       // Objetivo é , caso tenha o Shield ativo, nao recebe damage no próximo ataque que lhe façam
+    //Problema de lógica no uso do Shield. Warrior usa o shield quando ataca e não quando é atacado
+
+    // Objetivo é , caso tenha o Shield ativo, nao recebe damage no próximo ataque que lhe façam
 
     public void startTurn() {
         Collections.shuffle(heroes);
@@ -25,16 +26,19 @@ public class TurnManager {
 
             Hero target = selectRandomTarget(attacker);
             if (target.hp <= 0) continue;
-
+            System.out.println("target:" + target.name);
+            System.out.println("Atacker: " + attacker.name);
             if (target.isShield) {
+
                 System.out.println("Warrior has a Shield. Do not take Damage!");
+                System.out.println("------------------------\n");
                 break;
             }
-                performAbility(attacker, target);
-                performAttack(attacker, target);
-                displayStatus();
-            }
+            performAbility(attacker, target);
+            performAttack(attacker, target);
+            displayStatus();
         }
+    }
 
 
     private void performAbility(Hero attacker, Hero target) {

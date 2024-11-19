@@ -20,8 +20,8 @@ public class Sandbox {
         bootcamp.setBootcamp_name("102_fanSTATICs");
 
         Cadet cadet = new Cadet();
-        cadet.setName("Leonardo");
-        cadet.setAge(25);
+        cadet.setName("João");
+        cadet.setAge(33);
         cadet.setBootcamp(bootcamp);
 
         em.getTransaction().begin();

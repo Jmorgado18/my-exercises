@@ -32,17 +32,17 @@ public class AmigoSecreto {
             Console console = System.console();
             char[] senhaChar;
             if (console != null) {
-                senhaChar = console.readPassword("Digite a senha do email (%s): ", SENDER_EMAIL);
+                senhaChar = console.readPassword("Introduza a senha do email (%s): ", SENDER_EMAIL);
             } else {
-                System.out.println("Digite a senha do email: ");
+                System.out.println("Introduza a senha do email: ");
                 senhaChar = scanner.nextLine().toCharArray();
             }
             String senha = new String(senhaChar);
             Arrays.fill(senhaChar, ' ');
 
-            // Realiza o sorteio
+            // Faz o sorteio
             if (realizarSorteio(amigos)) {
-                // Envia os emails e salva o log
+                // Envia os emails e guarda o log
                 enviarEmails(amigos, senha);
                 salvarLog(amigos);
                 System.out.println("Sorteio realizado e emails enviados com sucesso!");
@@ -59,7 +59,7 @@ public class AmigoSecreto {
     private static List<Amigo> coletarInformacoes(Scanner scanner) {
         List<Amigo> amigos = new ArrayList<>();
 
-        System.out.println("Quantos amigos participarão?");
+        System.out.println("Quantos amigos vão participar?");
         int quantidade = lerNumeroValido(scanner);
 
         for (int i = 0; i < quantidade; i++) {
@@ -67,7 +67,7 @@ public class AmigoSecreto {
             System.out.println("Digite o nome:");
             String nome = scanner.nextLine().trim();
 
-            System.out.println("Digite o email:");
+            System.out.println("Digite o email de " + nome +" :");
             String email = validarEmail(scanner.nextLine().trim());
 
             amigos.add(new Amigo(nome, email));
@@ -179,10 +179,10 @@ public class AmigoSecreto {
                 );
             }
 
-            System.out.println("Log salvo em: " + filename);
+            System.out.println("Log guardado em: " + filename);
 
         } catch (IOException e) {
-            System.err.println("Erro ao salvar o log: " + e.getMessage());
+            System.err.println("Erro ao guardar o log: " + e.getMessage());
         }
     }
 }

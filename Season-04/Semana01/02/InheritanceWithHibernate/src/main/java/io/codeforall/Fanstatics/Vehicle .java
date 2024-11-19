@@ -3,7 +3,7 @@ package io.codeforall.Fanstatics;
 import javax.persistence.*;
 
 public class SingleTable {
-
+//Single Table
 
     @Entity(name="VehicleSingleTable")
     @Table(name = "vehicle_single_table")

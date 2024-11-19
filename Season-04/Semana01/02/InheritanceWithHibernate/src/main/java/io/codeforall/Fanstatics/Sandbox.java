@@ -1,37 +1,41 @@
-package io.codeforall.Fanstatics;
+package com.example.sandbox;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import com.example.tableperclass.Employee;
+import com.example.singletable.Vehicle;
+import com.example.joinedtable.Product;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class Sandbox {
 
     public static void main(String[] args) {
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("inheritance-example");
         EntityManager em = emf.createEntityManager();
 
-        //MappedSuperClass
+        try {
+            em.getTransaction().begin();
 
+            // Table per Class
+            Employee emp = new Employee("John Doe", 30, "Engineering");
+            em.persist(emp);
 
-        MappedSuperclass.Customer customer = new MappedSuperclass.Customer();
-        MappedSuperclass.Account account = new MappedSuperclass.Account();
-        customer.setName("Joao");
-        account.setBallance(1000.00);
+            // Single Table
+            Vehicle vehicle = new Vehicle("Car Model X", 5, "Sedan");
+            em.persist(vehicle);
 
-        MappedSuperclass.Customer customer2 = new MappedSuperclass.Customer();
-        MappedSuperclass.Account account2 = new MappedSuperclass.Account();
-        customer2.setName("David");
-        account2.setBallance(100.00);
+            // Joined Table
+            Product product = new Product("Laptop", 2, 1200.99);
+            em.persist(product);
 
-        em.getTransaction().begin();
-        em.persist(customer);
-        em.getTransaction().commit();
-
-        //TablePerClass
-
-
-
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
 }

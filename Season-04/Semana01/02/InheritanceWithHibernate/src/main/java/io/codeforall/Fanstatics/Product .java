@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlInlineBinaryData;
 
 public class JoinedTable {
-
+//JoinedTable
 @Entity(name="VehicleJoinedTable")
     @Table(name = "vehicle_joined_table")
     @Inheritance(strategy = InheritanceType.JOINED)

@@ -1,0 +1,89 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 4%px;
+    text-align: center;
+    padding: 50px;
+    
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin:0 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    font-size: 1.5em;
+}
+
+
+.container {
+    display: flex;
+}
+
+
+.menu {
+    background-color:#333;
+    width: 40%;
+    padding: 60px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    color:white
+    
+}
+
+
+.main-content {
+    background-color: white;
+    width: 120%;
+    text-align: center;
+    padding: 150px ;
+    font-size: 1.5em;
+}
+
+
+.footer {
+    background-color:#333;
+    color:white;
+    text-align: center;
+    text-decoration: underline;
+    padding: 15px 0;
+}

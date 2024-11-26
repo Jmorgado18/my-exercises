@@ -23,20 +23,23 @@ body {
 }
 
 .navbar ul {
-    list-style: none;
     display: flex;
-    justify-content:center;
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    gap: 15px; /* Espaçamento entre os itens */
+    list-style: none;
+    padding: 0;
     
 }
 
 .navbar li {
-    margin:0 15px;
-    width: 100%;
+    margin: 0;
 }
 
 .navbar a {
-    color: white;
     text-decoration: none;
+    color: white;
+    padding: 5px 10px; /* Ajusta o espaçamento interno */
 }
 
 
@@ -52,13 +55,18 @@ body {
 
 .container {
     display: flex;
+    flex-direction: row; /* Deixa os itens lado a lado */
+    gap: 20px; /* Espaçamento entre o menu e o conteúdo principal */
+    flex-wrap: wrap; /* Permite quebrar linhas se o espaço não for suficiente */
 }
 
 
 .menu {
-    background-color:#333;
-    width: 40%;
-    padding: 60px;
+    flex: 1; /* Ocupa uma parte proporcional do espaço */
+    max-width: 30%; /* Opcional: Limita o tamanho máximo */
+    background-color: #333;
+    color: white;
+    padding: 20px; /* Ajusta o espaçamento interno */
 }
 
 .menu ul {
@@ -76,27 +84,32 @@ body {
 
 
 .main-content {
+    display: flex;
+    flex-direction: column; /* Itens em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
     background-color: white;
-    width: 120%;
-    text-align: center;
-    padding: 150px ;
+    padding: 20px;
     font-size: 1.5em;
 }
 
 
 .footer {
-    background-color:#333;
-    color:white;
-    text-align: center;
-    text-decoration: underline;
-    padding: 15px 0;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    background-color: #333;
+    color: white;
+    padding: 15px;
 }
 
-#surprise-button{
-    background-color: aquamarine
-    color(prophoto-rgb red green blue);  
+#surprise-button {
+    background-color: aquamarine;
+    color: black;
     text-align: center;
-    box-shadow: #333;  
-    height: 80px;
-    
+    border: none;
+    box-shadow: 2px 2px 5px #333;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
 }

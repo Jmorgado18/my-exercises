@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeForAll</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>JavaBank</h1>
+            <div class="saldo">
+                <p>Saldo Atual: <span id="saldo">€5,000.00</span></p>
+            </div>
+        </header>
+
+        <nav>
+            <div class="menu-acoes">
+                <button class="btn deposito">Depósito</button>
+                <button class="btn levantamento">Levantamento</button>
+                <button class="btn transferencia">Transferência</button>
+                <button class="btn pagamento">Pagamentos</button>
+                <button class="btn extrato">Extrato</button>
+            </div>
+        </nav>
+
+        <main>
+            <section id="acoes">
+                <div class="formulario deposito">
+                    <h2>Depósito</h2>
+                    <input type="number" placeholder="Valor do Depósito">
+                    <button>Confirmar Depósito</button>
+                </div>
+
+                <div class="formulario levantamento">
+                    <h2>Levantamento</h2>
+                    <input type="number" placeholder="Valor do Levantamento">
+                    <button>Confirmar Levantamento</button>
+                </div>
+
+                <div class="formulario transferencia">
+                    <h2>Transferência</h2>
+                    <input type="text" placeholder="IBAN Destino">
+                    <input type="number" placeholder="Valor">
+                    <button>Transferir</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024JavaBank by JoaoMorgado</p>
+        </footer>
+    </div>
+</body>
+</html>

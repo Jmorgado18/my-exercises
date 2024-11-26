@@ -1,0 +1,46 @@
+body{
+    margin: 100;
+    padding: 100;
+    display: flex;
+    justify-content: center;
+    height: 100;
+    background-color: rgb(197, 224, 241);
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+.outer-box{
+    background-color: rgb(48, 129, 228);
+    border: 20px solid #f4f4f4;
+    padding: 20px;
+    text-align: center;
+    margin: 40;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+   
+}
+.inner-box{
+    width: 150px;
+    
+    overflow: scroll;
+    background-color: whitesmoke;
+    border: 10px solid;
+    padding : 5px;
+    display: grid;
+    text-align: center;
+    margin: 100;
+    border-radius: 10px;
+ 
+    
+}
+
+.medium-box{
+
+   
+    background-color: rgb(42, 154, 223);
+    border: 10px solid;
+    padding : 5px;
+    text-align: center;
+    margin: 100;
+    border-radius: 10px;
+    
+}

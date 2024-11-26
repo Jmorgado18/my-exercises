@@ -7,74 +7,99 @@
 
 body {
     font-family: Arial, sans-serif;
-    height: 10%;
+    background-color: aliceblue;
+    height:auto;
     text-align: center;
     padding: 50px;
     
 }
 
 .navbar {
-    background-color: #333;
+    display : flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #1348e6;
     color: white;
-    padding: 10px;
-    text-align:center;
     
+    position: fixed;
+    top:0;
+    left: 0;
     
-}
 
+
+}
 .navbar ul {
     display: flex;
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
-    gap: 15px; /* Espaçamento entre os itens */
+    
     list-style: none;
     padding: 0;
-    
+    margin: 0;
+    width: 100%; 
+    justify-content:space-around;
+
+       
 }
 
 .navbar li {
+    align-items: center;
     margin: 0;
+    
+   
 }
 
 .navbar a {
     text-decoration: none;
     color: white;
-    padding: 5px 10px; /* Ajusta o espaçamento interno */
+    padding: 5px; 
+    
 }
 
 
 .header {
-    background-color: #007bff;
+    background-color: #87b7eb;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 5, 5);
     text-align: center;
     height: 70px;
     line-height: 70px;
     font-size: 1.5em;
+    border-radius: 40px;
 }
 
 
 .container {
     display: flex;
-    flex-direction: row; /* Deixa os itens lado a lado */
-    gap: 20px; /* Espaçamento entre o menu e o conteúdo principal */
-    flex-wrap: wrap; /* Permite quebrar linhas se o espaço não for suficiente */
+    flex-direction: row; 
+    gap: 20px; 
+    flex-wrap: wrap;
+     
 }
 
 
 .menu {
-    flex: 1; /* Ocupa uma parte proporcional do espaço */
-    max-width: 30%; /* Opcional: Limita o tamanho máximo */
-    background-color: #333;
+    flex: 1; 
+    max-width: 30%; 
+    background-color: #7fa599;
     color: white;
-    padding: 20px; /* Ajusta o espaçamento interno */
+    text-shadow: 2px 2px 4px rgba(0, 0, 5, 5);
+    padding: 20px; 
+    border-radius: 50px;
+
 }
 
 .menu ul {
     list-style: none;
+    top: 80px;
+    left: 20px;
+    position: sticky;
 }
 
 .menu li {
-    margin: 10px 0;
+    margin: 10px ;
+    height: 40px;
+    
 }
 
 .menu a {
@@ -85,31 +110,51 @@ body {
 
 .main-content {
     display: flex;
-    flex-direction: column; /* Itens em coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+    height: 2000px;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
     background-color: white;
-    padding: 20px;
     font-size: 1.5em;
 }
 
 
 .footer {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    background-color: #333;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #5d78bd;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 5);
     padding: 15px;
+    border-radius: 50px;
 }
 
 #surprise-button {
-    background-color: aquamarine;
-    color: black;
+    align-items: center;
+    background-color: rgb(251, 12, 12);
+    color: white; 
     text-align: center;
     border: none;
-    box-shadow: 2px 2px 5px #333;
-    padding: 10px 20px;
+    border-radius: 50px; 
+    padding: 20px 30px; 
     cursor: pointer;
     font-size: 1em;
+    font-weight: bold; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    top: 1000px;
+    left: 600px;
+    position: absolute;
+}
+
+#surprise-button:hover {
+    background-color: rgb(245, 12, 12); 
+    transform: scale(1.2); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+#surprise-button:focus {
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(251, 12, 12, 0.4); 
 }

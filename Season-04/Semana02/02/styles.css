@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,29 +10,29 @@ body {
     background-color: aliceblue;
     height:auto;
     text-align: center;
-    padding: 50px;
+    padding: 5vw;
     
 }
 
 .navbar {
     display : flex;
     width: 100%;
-    height: 50px;
+    height: 10vh;
     justify-content: center; 
     align-items: center; 
     background-color: #1348e6;
-    color: white;
-    
+    color: white; 
     position: fixed;
     top:0;
     left: 0;
+    text-shadow: 5px 5px 10px rgba(0, 0, 5, 5);
+    z-index: 2;
     
 
 
 }
 .navbar ul {
     display: flex;
-    
     list-style: none;
     padding: 0;
     margin: 0;
@@ -45,14 +45,12 @@ body {
 .navbar li {
     align-items: center;
     margin: 0;
-    
-   
 }
 
 .navbar a {
     text-decoration: none;
     color: white;
-    padding: 5px; 
+    padding: 1em; 
     
 }
 
@@ -60,21 +58,24 @@ body {
 .header {
     background-color: #87b7eb;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 5, 5);
+    text-shadow: 5px 5px 10px rgba(0, 0, 5, 5);
     text-align: center;
-    height: 70px;
-    line-height: 70px;
-    font-size: 1.5em;
-    border-radius: 40px;
+    height: 12vh;
+    line-height: 12vh;
+    font-size: 2.5rem;
+    border-radius: 50vw;
+    font-family: "Parkinsans", sans-serif;
+    font-optical-sizing: auto;
+    font: weight 200px;
+    font-style: normal;
 }
 
 
 .container {
     display: flex;
     flex-direction: row; 
-    gap: 20px; 
-    flex-wrap: wrap;
-     
+    gap: 2vw; 
+    flex-wrap: wrap;    
 }
 
 
@@ -83,22 +84,22 @@ body {
     max-width: 30%; 
     background-color: #7fa599;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 5, 5);
-    padding: 20px; 
-    border-radius: 50px;
+    text-shadow: 5px 5px 10px rgba(0, 0, 5, 5);
+    padding: 2em; 
+    border-radius: 5vw;
 
 }
 
 .menu ul {
     list-style: none;
-    top: 80px;
-    left: 20px;
+    top: 10vh;
+    left: 2vw;
     position: sticky;
 }
 
 .menu li {
-    margin: 10px ;
-    height: 40px;
+    margin: 2em ;
+    height: 5em;
     
 }
 
@@ -115,7 +116,7 @@ body {
     justify-content: center; 
     align-items: center; 
     background-color: white;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 
@@ -126,8 +127,9 @@ body {
     background-color: #5d78bd;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 5);
-    padding: 15px;
-    border-radius: 50px;
+    padding:2vh;
+    border-radius: 5vw;    
+
 }
 
 #surprise-button {
@@ -136,15 +138,15 @@ body {
     color: white; 
     text-align: center;
     border: none;
-    border-radius: 50px; 
-    padding: 20px 30px; 
+    border-radius: 3em; 
+    padding: 2vw 3vw; 
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.5rem;
     font-weight: bold; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 10px 4px 10px 4px rgba(0, 0, 0, 0.1); 
     transition: all 0.3s ease; 
-    top: 1000px;
-    left: 600px;
+    top: 200%;
+    left: 50%;
     position: absolute;
 }
 
@@ -158,3 +160,9 @@ body {
     outline: none; 
     box-shadow: 0 0 0 3px rgba(251, 12, 12, 0.4); 
 }
+
+#apple-logo{
+    font-size: 50px;
+}
+
+

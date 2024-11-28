@@ -14,7 +14,7 @@
 
     <servlet-mapping>
         <servlet-name>tobias</servlet-name>
-        <url-pattern>/batata</url-pattern>
+        <url-pattern>/javabank</url-pattern>
     </servlet-mapping>
 
 </web-app>

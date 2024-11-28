@@ -12,6 +12,8 @@
         <servlet-class>io.codeforall.fanstatics.Customer</servlet-class>
     </servlet>
 
+
+
     <servlet-mapping>
         <servlet-name>tobias</servlet-name>
         <url-pattern>/javabank</url-pattern>

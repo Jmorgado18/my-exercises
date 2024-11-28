@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Customer extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
@@ -21,6 +22,8 @@ public class Customer extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/menu.jsp");
       dispatcher.forward(req,resp);
 

@@ -21,6 +21,10 @@ public class Customer extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/menu.jsp");
+      dispatcher.forward(req,resp);
+
+
         super.doPost(req, resp);
     }
 

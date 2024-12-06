@@ -16,10 +16,10 @@ function filterByCriteria(items, criteria) {
     return items.filter(item => {
         return Object.keys(criteria).every(key => {
             if (key === "email") {
-                // Para email, verificamos se o domínio está presente
+                
                 return item[key].includes(criteria[key]);
             }
-            // Para outros critérios, verificamos igualdade exata
+           
             return item[key] === criteria[key];
         });
     });

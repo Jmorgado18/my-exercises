@@ -1,4 +1,4 @@
-let characters = [
+const characters = [
     { name: "John", email: "john_the_one@gmail.com", age: 18 },
     { name: "Diane", email: "princess.diane@gmail.com", age: 43 },
     { name: "Snoop", email: "hip-hop@gmail.com", age: 4 },
@@ -11,3 +11,20 @@ const criteria = {
     age: 18,
     email: "gmail.com",
 };
+
+function filterByCriteria(items, criteria) {
+    return items.filter(item => {
+        return Object.keys(criteria).every(key => {
+            if (key === "email") {
+                // Para email, verificamos se o domínio está presente
+                return item[key].includes(criteria[key]);
+            }
+            // Para outros critérios, verificamos igualdade exata
+            return item[key] === criteria[key];
+        });
+    });
+}
+
+// Aplicando o filtro
+const filteredCharacters = filterByCriteria(characters, criteria);
+console.log(filteredCharacters);

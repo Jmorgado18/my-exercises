@@ -1,4 +1,4 @@
-const characters = [
+let characters = [
     { name: "John", email: "john_the_one@gmail.com", age: 18 },
     { name: "Diane", email: "princess.diane@gmail.com", age: 43 },
     { name: "Snoop", email: "hip-hop@gmail.com", age: 4 },
@@ -7,24 +7,32 @@ const characters = [
     { name: "Eminem", email: "theOne@gmail.com", age: 17 },
 ];
 
-const criteria = {
+let criteria = {
     age: 18,
     email: "gmail.com",
 };
 
-function filterByCriteria(items, criteria) {
-    return items.filter(item => {
-        return Object.keys(criteria).every(key => {
-            if (key === "email") {
-                
-                return item[key].includes(criteria[key]);
-            }
-           
-            return item[key] === criteria[key];
-        });
-    });
+function filterUsers(users, crit){
+
+    let filterdUsers = [];
+   
+    for(let i = 0; i < users.length; i++){
+    
+
+        if(users[i].age == crit.age && users[i].email.includes(crit.email)){
+
+            filterdUsers.push(users[i]);
+
+            console.log(`O user ${users[i].name} tem a idade ${users[i].age} e o email ${users[i].email}`);
+          }
+        
+          return filterdUsers;
+    }
+    
 }
 
-// Aplicando o filtro
-const filteredCharacters = filterByCriteria(characters, criteria);
-console.log(filteredCharacters);
+let filteredUsersfunction = filterUsers(characters, criteria);
+
+console.log("Users que correspondem ao filtro :", filteredUsersfunction);
+
+

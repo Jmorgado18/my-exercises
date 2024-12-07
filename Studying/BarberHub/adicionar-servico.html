@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Novo Serviço - Barbearia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Barbearia</a>
+    </nav>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <h2 class="text-center">Adicionar Novo Serviço</h2>
+
+        <!-- Formulário para adicionar serviço -->
+        <form>
+          <div class="mb-3">
+            <label for="nomeServico" class="form-label">Nome do Serviço</label>
+            <input type="text" class="form-control" id="nomeServico" placeholder="Insira o nome do serviço" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="precoServico" class="form-label">Preço (€)</label>
+            <input type="number" step="0.01" class="form-control" id="precoServico" placeholder="Insira o preço do serviço" required>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Salvar Serviço</button>
+          <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='Servicos.html'">Voltar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

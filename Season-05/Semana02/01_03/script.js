@@ -1,4 +1,4 @@
-// Add CSS dynamically
+
 const style = document.createElement("style");
 style.textContent = `
   body {
@@ -90,3 +90,4 @@ function playGame() {
 }
 
 document.getElementById("play-button").addEventListener("click", playGame);
+

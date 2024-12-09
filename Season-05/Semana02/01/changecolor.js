@@ -22,14 +22,16 @@ function criarColunas() {
         coluna.style.flex = "1"; 
         coluna.style.backgroundColor = cor;
         coluna.innerText = cor;
-        coluna.style.textAlign = "center";
+        coluna.style.display = "flex";    
         coluna.style.fontSize = "24px";
         coluna.style.padding = "10px";
         coluna.style.color = "white";
         coluna.style.fontWeight = "bold";
         coluna.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
         coluna.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
-        coluna.style.justifyContent="flex-end";
+        coluna.style.justifyContent="center";
+        coluna.style.alignItems="flex-end";
+        
         body.appendChild(coluna);
     }
 }

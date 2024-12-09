@@ -165,3 +165,17 @@ button:hover::before {
     bottom: 0;
     width: 100%;
 }
+
+.result {
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    margin: 0 auto ;
+    color: #FFD700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+}

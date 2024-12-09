@@ -25,5 +25,5 @@ function criarColunas() {
     }
 }
 
-// Executa a função ao carregar a página
+
 window.onload = criarColunas;

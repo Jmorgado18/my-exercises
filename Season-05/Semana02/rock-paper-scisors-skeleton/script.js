@@ -62,4 +62,17 @@ function playGame() {
     updateScores(result);
 }
 
+function resetScores() {
+    player1Score = 0;
+    player2Score = 0;
+    document.getElementById("player1-score").textContent = player1Score;
+    document.getElementById("player2-score").textContent = player2Score;
+    player1Img.style.display = 'none';
+    player2Img.style.display = 'none';
+    resultText.textContent = "VS";
+}
+
 playButton.addEventListener("click", playGame);
+
+const resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", resetScores);

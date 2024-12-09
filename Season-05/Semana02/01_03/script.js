@@ -51,11 +51,23 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+let player1Score = 0;
+let player2Score = 0;
+
+function updateScores(winner) {
+  if (winner === "Player 1 Wins!") {
+    player1Score++;
+    document.getElementById("player1-score").textContent = player1Score;
+  } else if (winner === "Player 2 Wins!") {
+    player2Score++;
+    document.getElementById("player2-score").textContent = player2Score;
+  }
+}
 
 const choices = ["rock", "paper", "scissors"];
 const images = {
-  rock: "rsc/rock.jpg",
-  paper: "rsc/paper.jpg",
+  rock: "rsc/rock.png",
+  paper: "rsc/paper.png",
   scissors: "rsc/scisors.png",
 };
 
@@ -87,6 +99,7 @@ function playGame() {
 
   const result = determineWinner(player1Choice, player2Choice);
   document.getElementById("result").textContent = result;
+  updateScores(result);
 }
 
 document.getElementById("play-button").addEventListener("click", playGame);

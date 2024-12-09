@@ -51,6 +51,19 @@ body {
     transform: rotateX(5deg);
 }
 
+.id{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900000px;
+    transform-style: preserve-3d;
+    transform: rotateX(5deg);
+
+}
+
 .player1,
 .player2 {
     display: flex;

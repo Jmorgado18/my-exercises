@@ -43,10 +43,19 @@ function createColumns() {
 
     const changeColorButton = document.createElement("button");
     changeColorButton.innerText = "Change Colors";
-    changeColorButton.style.marginTop = "20px";
     changeColorButton.style.padding = "10px 20px";
     changeColorButton.style.fontSize = "18px";
     changeColorButton.style.cursor = "pointer";
+    changeColorButton.style.position = "absolute";
+    changeColorButton.style.top = "50%";
+    changeColorButton.style.left = "50%";
+    changeColorButton.style.transform = "translate(-50%, -50%)";
+    changeColorButton.style.backgroundColor = "#4CAF50";
+    changeColorButton.style.color = "white";
+    changeColorButton.style.border = "none";
+    changeColorButton.style.borderRadius = "4px";
+    changeColorButton.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+    changeColorButton.style.transition = "background-color 0.3s ease";
 
     changeColorButton.addEventListener("click", () => {
         const columns = columnsContainer.children;

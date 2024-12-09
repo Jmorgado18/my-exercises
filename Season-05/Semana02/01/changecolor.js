@@ -32,10 +32,19 @@ function criarColunas() {
         coluna.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
         coluna.style.justifyContent="center";
         coluna.style.alignItems="flex-end";
-        
+        coluna.style.cursor="pointer";
+
+        coluna.addEventListener("click", function() {
+            navigator.clipboard.writeText(cor).then(function() {
+                alert("Cor copiada: " + cor);
+            }, function() {
+                alert("Erro ao copiar a cor: " + cor);
+            });
+        });
+
         body.appendChild(coluna);
     }
 }
 
 
-window.onload = criarColunas;
+window.onload = criarColunas();

@@ -179,3 +179,25 @@ button:hover::before {
     letter-spacing: 2px;
     
 }
+
+.chooseyourphoto {
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    margin: 0 auto ;
+    color: #FFD700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    ;
+}
+
+.players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}

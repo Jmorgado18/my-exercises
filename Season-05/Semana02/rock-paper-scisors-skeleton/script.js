@@ -6,7 +6,7 @@ const player1Img = document.getElementById('player1-img');
 const player2Img = document.getElementById('player2-img');
 const resultText = document.getElementById('result');
 
-// Ocultar imagens inicialmente
+
 player1Img.style.display = 'none';
 player2Img.style.display = 'none';
 
@@ -47,7 +47,7 @@ function playGame() {
     const player1Choice = getRandomChoice();
     const player2Choice = getRandomChoice();
 
-    // Atualizar imagens e exibi-las
+    
     player1Img.src = images[player1Choice];
     player1Img.alt = player1Choice;
     player1Img.style.display = 'block';
@@ -56,13 +56,10 @@ function playGame() {
     player2Img.alt = player2Choice;
     player2Img.style.display = 'block';
 
-    // Determinar o resultado e atualizar na tela
     const result = determineWinner(player1Choice, player2Choice);
     resultText.textContent = result;
 
-    // Atualizar pontuações
     updateScores(result);
 }
 
-// Adicionar evento ao botão de "Play"
 playButton.addEventListener("click", playGame);

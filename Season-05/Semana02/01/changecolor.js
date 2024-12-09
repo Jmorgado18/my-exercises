@@ -10,6 +10,7 @@ function RandomColor() {
 }
 
 
+
 function criarColunas() {
     const body = document.body;
     body.style.display = "flex"; 

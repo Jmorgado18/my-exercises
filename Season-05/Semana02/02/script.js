@@ -48,8 +48,8 @@ function Service(name) {
   const userService = Service("UserService");
   
   // Adicionar itens
-  userService.add({ id: 1, name: "Alice" });
-  userService.add({ id: 2, name: "Bob" });
+  userService.add({ id: 1, name: "Joao" });
+  userService.add({ id: 2, name: "Gonçalo" });
   
   // Listar itens
   console.log(userService.list());
@@ -58,7 +58,7 @@ function Service(name) {
   console.log(userService.get(1));
   
   // Atualizar um item
-  userService.update(2, { name: "Robert" });
+  userService.update(2, { name: "Mekié" });
   console.log(userService.list());
   
   // Remover um item

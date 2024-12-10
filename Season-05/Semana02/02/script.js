@@ -63,7 +63,6 @@ const userService = Service("UserService");
 userService.add({ id: 1, name: "Joao" });
 userService.add({ id: 2, name: "Gonçalo" });
 
-console.log(userService.name());
 
 // Listar itens
 console.log(userService.list());

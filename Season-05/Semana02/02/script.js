@@ -9,8 +9,8 @@ function Service(name) {
       // Adiciona um novo item ao serviço
       add: (item) => {
         items.push(item);
-        return item;
-      },
+        return item;    
+      }, 
   
       // Remove um item com base em um identificador (assumindo que os itens têm uma propriedade "id")
       remove: (id) => {
@@ -46,10 +46,12 @@ function Service(name) {
   
   // Exemplo de uso:
   const userService = Service("UserService");
-  
+
   // Adicionar itens
   userService.add({ id: 1, name: "Joao" });
   userService.add({ id: 2, name: "Gonçalo" });
+
+  console.log(userService.name());
   
   // Listar itens
   console.log(userService.list());

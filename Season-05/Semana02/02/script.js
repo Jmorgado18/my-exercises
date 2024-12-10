@@ -80,4 +80,5 @@ console.log(userService.list());
 
 // Destruir todos os itens
 userService.destroy();
-console.log(userService.list());
+console.log(userService.list()); 
+

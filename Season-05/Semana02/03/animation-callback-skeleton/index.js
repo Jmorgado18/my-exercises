@@ -4,42 +4,38 @@ const container = document.querySelector("#container");
 let interval;
 let direction = 1; // 1: move right, -1: move left
 
-
 /**
- * Moves the box within the container by updating its `left` style property.
- * The box changes direction when it hits the boundaries of the container.
+ * Move the box by 1px in the current direction.
+ *
+ * @returns {void}
  */
-function move() {
-    // Get the computed styles for the box and container
+function moveBox() {
     const boxStyle = getComputedStyle(box);
     const containerStyle = getComputedStyle(container);
 
-    // Parse the current left position of the box and the dimensions of the container and box
+    // Get the current position of the box and the width of the box and the container
     const boxLeft = parseInt(boxStyle.left);
     const containerWidth = parseInt(containerStyle.width);
     const boxWidth = parseInt(boxStyle.width);
 
-    // Calculate new left position by moving the box by 1px in the current direction
     // Move the box by 1px in the current direction
     const newLeft = boxLeft + direction;
 
-    // Check if the box has hit the right boundary
+    // Check if the box is at the edge of the container and reverse the direction
     // Check boundaries
     if (newLeft + boxWidth > containerWidth) {
         direction = -1; // Change direction to left
-    } 
-    // Check if the box has hit the left boundary
-    else if (newLeft < 0) {
     } else if (newLeft < 0) {
         direction = 1; // Change direction to right
     }
 
-    // Update the left position of the box
+    // Update the position of the box
     box.style.left = newLeft + "px";
 }
+
 
 // Start the movement on click
 box.addEventListener("click", () => {
     if (interval) return; // Prevent multiple intervals
-    interval = setInterval(move, 10);
+    interval = setInterval(moveBox, 10);
 });

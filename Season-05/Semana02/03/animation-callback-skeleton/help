@@ -30,3 +30,90 @@ box.addEventListener("click", () => {
     if (interval) return; // Prevent multiple intervals
     interval = setInterval(moveBox, 10);
 });
+
+
+
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Animated Container</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+                font-family: Arial, sans-serif;
+            }
+
+            #container {
+                width: 400px;
+                height: 50px;
+                background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+                overflow: hidden;
+                position: relative;
+                border-radius: 25px;
+                box-shadow: 
+                    5px 5px 10px rgba(0, 0, 0, 0.1),
+                    -5px -5px 10px rgba(255, 255, 255, 0.5);
+            }
+
+            #box {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(145deg, #ff6b6b, #ff4757);
+                cursor: pointer;
+                position: absolute;
+                border-radius: 50%;
+                box-shadow: 
+                    3px 3px 6px rgba(0, 0, 0, 0.2),
+                    -3px -3px 6px rgba(255, 255, 255, 0.5);
+                transition: all 0.3s ease;
+            }
+
+            #box:hover {
+                transform: scale(1.1);
+                background: linear-gradient(145deg, #ff4757, #ff6b6b);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="box"></div>
+        </div>
+
+        <script>
+            const box = document.getElementById('box');
+            const container = document.getElementById('container');
+
+            box.addEventListener('mousedown', function(e) {
+                const containerWidth = container.clientWidth;
+                const boxWidth = box.clientWidth;
+                const maxX = containerWidth - boxWidth;
+
+                function moveBox(event) {
+                    let newX = event.clientX - container.getBoundingClientRect().left - boxWidth / 2;
+                    newX = Math.max(0, Math.min(newX, maxX));
+                    box.style.left = `${newX}px`;
+                }
+
+                function stopMove() {
+                    document.removeEventListener('mousemove', moveBox);
+                    document.removeEventListener('mouseup', stopMove);
+                }
+
+                document.addEventListener('mousemove', moveBox);
+                document.addEventListener('mouseup', stopMove);
+            });
+        </script>
+    </body>
+</html>
+
+
+

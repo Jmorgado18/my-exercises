@@ -2,6 +2,8 @@
     width: 400px;
     height: 50px;
     background-color: grey;
+    overflow: hidden;
+
 
     /* Position absolute relative to parent container */
     position: absolute;
@@ -12,6 +14,7 @@
     height: 50px;
     background-color: red;
     cursor: pointer;
+    
 
     /* Position absolute relative to parent container */
     position: absolute;

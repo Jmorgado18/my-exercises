@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.loading-container {
+    width: 300px;
+    background-color:#e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    
+
+}
+
+#loadingBar {
+    width: 20%;
+    height: 30px;
+    background-color: #4CAF50;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 400px rgba(0, 0, 0, 0.1); 
+
+}
+
+#loadingText {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    
+}

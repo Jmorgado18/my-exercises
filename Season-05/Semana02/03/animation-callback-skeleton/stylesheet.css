@@ -11,6 +11,7 @@
     width: 50px;
     height: 50px;
     background-color: red;
+    cursor: pointer;
 
     /* Position absolute relative to parent container */
     position: absolute;

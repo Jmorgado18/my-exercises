@@ -1,0 +1,32 @@
+const box = document.querySelector("#box");
+const container = document.querySelector("#container");
+
+let interval;
+let direction = 1; // 1: move right, -1: move left
+
+function moveBox() {
+    const boxStyle = getComputedStyle(box);
+    const containerStyle = getComputedStyle(container);
+
+    const boxLeft = parseInt(boxStyle.left);
+    const containerWidth = parseInt(containerStyle.width);
+    const boxWidth = parseInt(boxStyle.width);
+
+    // Move the box by 1px in the current direction
+    const newLeft = boxLeft + direction;
+
+    // Check boundaries
+    if (newLeft + boxWidth > containerWidth) {
+        direction = -1; // Change direction to left
+    } else if (newLeft < 0) {
+        direction = 1; // Change direction to right
+    }
+
+    box.style.left = newLeft + "px";
+}
+
+// Start the movement on click
+box.addEventListener("click", () => {
+    if (interval) return; // Prevent multiple intervals
+    interval = setInterval(moveBox, 10);
+});

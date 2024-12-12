@@ -3,7 +3,9 @@ function fetchData(url) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data); // Log the data
-            const table = document.getElementById("table");
+            const tbody = document.querySelector("#table tbody"); // Selecionar o <tbody>
+            tbody.innerHTML = ""; // Limpa o conteúdo anterior, se necessário
+
             data.forEach(customer => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
@@ -11,8 +13,12 @@ function fetchData(url) {
                     <td>${customer.lastName}</td>
                     <td>${customer.email}</td>
                     <td>${customer.phone}</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
                 `;
-                table.appendChild(row);
+                tbody.appendChild(row);
             });
         })
         .catch((error) => console.error("Fetch error:", error));

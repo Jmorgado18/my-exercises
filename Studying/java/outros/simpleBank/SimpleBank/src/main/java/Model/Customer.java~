@@ -1,0 +1,13 @@
+package Model;
+
+import java.util.List;
+
+public class Customer {
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String phoneNumber;
+    private List<Account> accounts;
+
+}
